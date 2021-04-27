@@ -36,19 +36,10 @@ public class MainActivity extends AppCompatActivity {
     private Button b_plusMinus;
     private Button b_backspace;
 
+    private Button b_pi;
+
     private TextView t1;
     private TextView t2;
-
-    private final char ADDITION = '+';
-    private final char SUBTRACTION = '-';
-    private final char MULTIPLICATION = '*';
-    private final char DIVISION = '/';
-    private final char EQU = '=';
-    private final char EXTRA = '@';
-
-    private char ACTION;
-    private double val1 = Double.NaN;
-    private double val2;
 
     private double aux = Double.NaN;
     private boolean primeraVez = true;
@@ -209,6 +200,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        b_pi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                operationClicked("π");
+
+            }
+        });
+
         b_plusMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -256,8 +256,6 @@ public class MainActivity extends AppCompatActivity {
         b_clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                val1 = Double.NaN;
-                val2 = Double.NaN;
                 t1.setText("");
                 t2.setText("");
             }
@@ -342,6 +340,8 @@ public class MainActivity extends AppCompatActivity {
         b_ans = findViewById(R.id.button_ANS);
         b_plusMinus = findViewById(R.id.button_plusMinus);
         b_backspace = findViewById(R.id.button_backspace);
+
+        b_pi = findViewById(R.id.button11);
 
         t1 = findViewById(R.id.input);
         t2 = findViewById(R.id.output);
@@ -435,6 +435,10 @@ public class MainActivity extends AppCompatActivity {
                     }
                     case '/': {
                         op1 = op1 / op2;
+                        break;
+                    }
+                    case 'π': {
+                        op1 = UtilesMatemáticas.pi();
                         break;
                     }
 
