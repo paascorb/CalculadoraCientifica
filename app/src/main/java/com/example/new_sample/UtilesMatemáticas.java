@@ -119,6 +119,10 @@ public class UtilesMatemáticas {
         return Math.PI;
     }
 
+    public static double e(){
+        return Math.E;
+    }
+
     public static int ncr(int n,int m) {
         return factorial(n)/(factorial(m)*factorial(n-m));
     }
@@ -128,17 +132,17 @@ public class UtilesMatemáticas {
         String parte1 = "";
         String parte2 ="";
         for(int n = 0 ; n < numero.length()-1 ; ++n) {
-            if(numero.charAt(n)=='(') {
-                for(int j = numero.length()-1; j > n; --j) {
-                    if(numero.charAt(j)==')')
-                        if(n!=0) {
-                            parte1 = numero.substring(0,n);
-                            System.out.println(parte1);
+            if (numero.charAt(n) == '(') {
+                for (int j = numero.length() - 1; j > n; --j) {
+                    if (numero.charAt(j) == ')') {
+                        if (n != 0) {
+                            parte1 = numero.substring(0, n);
                         }
-                    if(j!=numero.length()-1) {
-                        parte2 = numero.substring(j,numero.length()-1);
+                        if (j != numero.length() - 1) {
+                            parte2 = numero.substring(j+1, numero.length());
+                        }
+                        return evaluar(parte1 + parentesis(numero.substring(n + 1, j)) + parte2);
                     }
-                    return evaluar(parte1+parentesis(numero.substring(n+1, j))+parte2);
                 }
             }
         }
