@@ -2,6 +2,7 @@ package com.example.new_sample;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -9,6 +10,9 @@ import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -52,13 +56,14 @@ public class MainActivity extends AppCompatActivity {
     private double aux = Double.NaN;
     private boolean primeraVez = true;
 
-    private int count=0;
-    private String expression="";
-    private String text="";
-    private Double result=0.0;
+    private int count = 0;
+    private String expression = "";
+    private String text = "";
+    private Double result = 0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         viewSetup();
@@ -68,9 +73,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ifErrorOnOutput();
                 exceedLength();
+                if(t1.getText().equals("Invalid Expression")){
+                    t1.setText("");
+                }
                 t2.setText(t2.getText().toString() + "1");
-
-
             }
         });
 
@@ -79,6 +85,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ifErrorOnOutput();
                 exceedLength();
+                if(t1.getText().equals("Invalid Expression")){
+                    t1.setText("");
+                }
                 t2.setText(t2.getText().toString() + "2");
             }
         });
@@ -88,6 +97,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ifErrorOnOutput();
                 exceedLength();
+                if(t1.getText().equals("Invalid Expression")){
+                    t1.setText("");
+                }
                 t2.setText(t2.getText().toString() + "3");
             }
         });
@@ -97,6 +109,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ifErrorOnOutput();
                 exceedLength();
+                if(t1.getText().equals("Invalid Expression")){
+                    t1.setText("");
+                }
                 t2.setText(t2.getText().toString() + "4");
             }
         });
@@ -106,6 +121,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ifErrorOnOutput();
                 exceedLength();
+                if(t1.getText().equals("Invalid Expression")){
+                    t1.setText("");
+                }
                 t2.setText(t2.getText().toString() + "5");
             }
         });
@@ -115,6 +133,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ifErrorOnOutput();
                 exceedLength();
+                if(t1.getText().equals("Invalid Expression")){
+                    t1.setText("");
+                }
                 t2.setText(t2.getText().toString() + "6");
             }
         });
@@ -124,6 +145,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ifErrorOnOutput();
                 exceedLength();
+                if(t1.getText().equals("Invalid Expression")){
+                    t1.setText("");
+                }
                 t2.setText(t2.getText().toString() + "7");
             }
         });
@@ -133,6 +157,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ifErrorOnOutput();
                 exceedLength();
+                if(t1.getText().equals("Invalid Expression")){
+                    t1.setText("");
+                }
                 t2.setText(t2.getText().toString() + "8");
             }
         });
@@ -142,6 +169,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ifErrorOnOutput();
                 exceedLength();
+                if(t1.getText().equals("Invalid Expression")){
+                    t1.setText("");
+                }
                 t2.setText(t2.getText().toString() + "9");
             }
         });
@@ -151,6 +181,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ifErrorOnOutput();
                 exceedLength();
+                if(t1.getText().equals("Invalid Expression")){
+                    t1.setText("");
+                }
                 t2.setText(t2.getText().toString() + "0");
             }
         });
@@ -159,97 +192,100 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 exceedLength();
-                t2.setText(t2.getText().toString() + ".");
+                if(t1.getText().equals("Invalid Expression")){
+                    t1.setText("");
+                }
+                if((!t2.getText().toString().isEmpty()) && (puedeDecimal( t2.getText().toString())) ){
+                    t2.setText(t2.getText().toString() + ".");
+                }else{
+                    t2.setText(t2.getText().toString() + "");
+                }
+
             }
         });
 
         b_ans.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(t1.getText().equals("Invalid Expression")){
+                    t1.setText("");
+                }
                 if (primeraVez) {
-                    t2.setText("0");
+                    t2.setText(t2.getText().toString() + "0");
                 } else {
-                    t2.setText(String.valueOf(aux));
+                    t2.setText(t2.getText().toString() + String.valueOf(aux));
                 }
-                }
+            }
         });
 
         b_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                if (t1.getText().length() > 0) {
-//                    ACTION = ADDITION;
-//                    operation();
-//                    if (!ifReallyDecimal()) {
-//                        t2.setText(val1 + "+");
-//                    } else {
-//                        t2.setText((int) val1 + "+");
-//                    }
-//                    t1.setText(null);
-//                } else if (t1.getText().length() == 0) {
-//                    t2.setText(val1 + "+");
-//                } else {
-//                    t2.setText("Error");
-//                }
-                operationClicked("+");
+                if(t1.getText().equals("Invalid Expression")){
+                    t1.setText("");
+                }
+                if((!t2.getText().toString().isEmpty()) && (permiteSimbolo(t2.getText().toString(),"+"))){
+                    operationClicked("+");
+                }else{
+                    t2.setText(t2.getText().toString() + "");
+                }
+
             }
         });
 
         b_sub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                if (t1.getText().length() > 0) {
-//                    ACTION = SUBTRACTION;
-//                    operation();
-//                    if (t1.getText().length() > 0)
-//                        if (!ifReallyDecimal()) {
-//                            t2.setText(val1 + "-");
-//                        } else {
-//                            t2.setText((int) val1 + "-");
-//                        }
-//                    t1.setText(null);
-//                } else {
-//                    t2.setText("Error");
-//                }
-                operationClicked("-");
+                if(t1.getText().equals("Invalid Expression")){
+                    t1.setText("");
+                }else if(t2.getText().toString().isEmpty()){
+                    t2.setText("-");
+                }
+                else if(t2.getText().toString().equals("-")){
+                    t2.setText(t2.getText().toString() + "");
+                }else if(permiteSimbolo(t2.getText().toString(),"-")){
+                    if (t2.length() != 0) {
+                        String s = t2.getText().toString() + "-";
+                        t2.setText(s);
+                        count = 0;
+                    } else {
+                        String text = t1.getText().toString();
+                        if (text.length() > 0) {
+                            String newText = text.substring(0, text.length() - 1) + "-";
+                            t1.setText(newText);
+                        } else if (text.length() == 0) {
+                            t2.setText("-");
+                        }
+                    }
+                }
             }
         });
 
         b_multi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                if (t1.getText().length() > 0) {
-//                    ACTION = MULTIPLICATION;
-//                    operation();
-//                    if (!ifReallyDecimal()) {
-//                        t2.setText(val1 + "×");
-//                    } else {
-//                        t2.setText((int) val1 + "×");
-//                    }
-//                    t1.setText(null);
-//                } else {
-//                    t2.setText("Error");
-//                }
-                operationClicked("*");
+                if(t1.getText().equals("Invalid Expression")){
+                    t1.setText("");
+                }
+                if((!t2.getText().toString().isEmpty()) && (permiteSimbolo(t2.getText().toString(),"*"))){
+                    operationClicked("*");
+                }else{
+                    t2.setText(t2.getText().toString() + "");
+                }
             }
         });
 
         b_divide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                if (t1.getText().length() > 0) {
-//                    ACTION = DIVISION;
-//                    operation();
-//                    if (ifReallyDecimal()) {
-//                        t2.setText((int) val1 + "/");
-//                    } else {
-//                        t2.setText(val1 + "/");
-//                    }
-//                    t1.setText(null);
-//                } else {
-//                    t2.setText("Error");
-//                }
-                operationClicked("/");
+                if(t1.getText().equals("Invalid Expression")){
+                    t1.setText("");
+                }
+                if((!t2.getText().toString().isEmpty()) && (permiteSimbolo(t2.getText().toString(),"/"))){
+                    operationClicked("/");
+                }else{
+                    t2.setText(t2.getText().toString() + "");
+                }
 
             }
         });
@@ -257,13 +293,16 @@ public class MainActivity extends AppCompatActivity {
         b_plusMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(t1.getText().equals("Invalid Expression")){
+                    t1.setText("");
+                }
                 if (!t2.getText().toString().isEmpty() || !t1.getText().toString().isEmpty()) {
-                    String s=t1.getText().toString();
-                    char arr[]=s.toCharArray();
-                    if(arr[0]=='-')
-                        t1.setText(s.substring(1,s.length()));
+                    String s = t1.getText().toString();
+                    char arr[] = s.toCharArray();
+                    if (arr[0] == '-')
+                        t2.setText(s.substring(1, s.length()));
                     else
-                        t1.setText("-"+s);
+                        t2.setText("-" + s);
                 }
             }
         });
@@ -271,39 +310,22 @@ public class MainActivity extends AppCompatActivity {
         b_equal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                if (t1.getText().length() > 0) {
-//                    operation();
-//                    ACTION = EQU;
-//                    if (!ifReallyDecimal()) {
-//                        t2.setText(/*t2.getText().toString() + String.valueOf(val2) + "=" + */String.valueOf(val1));
-//                    } else {
-//                        t2.setText(/*t2.getText().toString() + String.valueOf(val2) + "=" + */String.valueOf((int) val1));
-//                    }
-//                    t1.setText(null);
-//                } else {
-//                    t2.setText("Error");
-//                }
 
-                if(t2.length()!=0)
-                {
-                    expression=t2.getText().toString();
+                if (t2.length() != 0) {
+                    expression = t2.getText().toString();
                 }
                 t1.setText("");
-                if(expression.length()==0)
-                    expression="0.0";
-                try
-                {
-                    //evaluate the expression
-                    result=calculate(expression);
-                    t2.setText(result+"");
+                if (expression.length() == 0)
+                    expression = "0.0";
+                try {
+                    result = calculate(expression);
+                    t2.setText(result + "");
                     primeraVez = false;
                     aux = result;
-                }
-                catch (Exception e)
-                {
+                } catch (Exception e) {
                     t1.setText("Invalid Expression");
                     t2.setText("");
-                    expression="";
+                    expression = "";
                     e.printStackTrace();
                 }
             }
@@ -322,6 +344,9 @@ public class MainActivity extends AppCompatActivity {
         b_backspace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(t1.getText().equals("Invalid Expression")){
+                    t1.setText("");
+                }
                 if ((t2.getText().length() > 0)) {
                     if (t2.getText().length() == 1) {
                         t2.setText("");
@@ -333,7 +358,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        t2.addTextChangedListener(new TextWatcher () {
+        t2.addTextChangedListener(new TextWatcher() {
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -347,32 +372,111 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(t2.getText().toString().length() > 0) {
+                if (t2.getText().toString().length() > 0) {
                     double resultadoParcial = 0;
                     char[] t2CharArray = t2.getText().toString().toCharArray();
-                    if(Character.isDigit(t2CharArray[t2CharArray.length - 1]) && esOperacion(t2CharArray)) {
-                        resultadoParcial = calculate(t2.getText().toString());
-                        t1.setText(resultadoParcial+"");
+                    char[] t2CharArrayCopia;
+                    int numSimbolos = getNumSimbolos(t2CharArray);
+                    if (numSimbolos == 0) {
+                        t1.setText(t2.getText().toString());
+                    } else {
+                        if ((numSimbolos == 1 && esSimbolo(t2CharArray[t2CharArray.length - 1])) || (numSimbolos == 2 && esSimbolo(t2CharArray[t2CharArray.length - 1]) && esSimbolo(t2CharArray[t2CharArray.length - 2]))) {
+                            t2CharArrayCopia = eliminarUltimosSimbolos(t2CharArray);
+                            t1.setText(charArrayToString(t2CharArrayCopia));
+                        } else {
+                            t2CharArrayCopia = t2.getText().toString().toCharArray();
+                            if (numSimbolos > 1 && esSimbolo(t2CharArray[t2CharArray.length - 1])) {
+                                t2CharArrayCopia = eliminarUltimosSimbolos(t2CharArray);
+                            }
+                            resultadoParcial = calculate(charArrayToString(t2CharArrayCopia));
+                            t1.setText(resultadoParcial + "");
+                        }
+
                     }
                 }
-
             }
         });
 
     }
 
-    private boolean esOperacion(char[] arr) {
-        int position = 0;
-        int contador = 0;
-        if(arr[0] == '-') {
-            position++;
-        }
-        for(int i = position; i < arr.length - 1; i++) {
-            if(arr[i] != '+' && arr[i] != '-' && arr[i] != '*' && arr[i] != '/') {
-                contador++;
+    private boolean permiteSimbolo(String s, String sim){
+        char[] arr = s.toCharArray();
+        int n=arr.length-1;
+        boolean valido=true;
+        if (esSimbolo(arr[n])) {
+            if(!sim.equals("-")){
+                valido=false;
+            }else{
+                if(esSimbolo(arr[n-1])){
+                    valido=false;
+                }
             }
         }
-        return contador >= 1;
+        return valido;
+    }
+
+
+    private boolean puedeDecimal(String s){
+        char[] arr = s.toCharArray();
+        int n=arr.length-1;
+        boolean valido=true;
+        while (n>=0 && !esSimbolo(arr[n])) {
+            if(arr[n]=='.'){
+                valido=false;
+            }
+            n--;
+        }
+        if(esSimbolo(arr[arr.length-1])){
+            valido=false;
+        }
+        return valido;
+    }
+
+
+    private String charArrayToString(char[] arr) {
+        String s = "";
+
+        for (int i = 0; i < arr.length; i++) {
+            s += arr[i];
+        }
+        return s;
+    }
+
+    private int getNumSimbolos(char[] arr) {
+        int position = 0;
+        int contador = 0;
+        boolean anterior = false;
+        if (arr[0] == '-') {
+            position++;
+        }
+        for (int i = position; i < arr.length; i++) {
+            if (arr[i] == '+' || arr[i] == '-' || arr[i] == '*' || arr[i] == '/') {
+                if (!anterior) {
+                    contador++;
+                    anterior = true;
+                }
+            }
+            anterior = false;
+        }
+        return contador;
+    }
+
+    private boolean esSimbolo(char caracter) {
+        return (caracter == '+' || caracter == '-' || caracter == '*' || caracter == '/');
+    }
+
+    private char[] eliminarUltimosSimbolos(char[] arr) {
+        int n = arr.length;
+        while (esSimbolo(arr[n - 1])) {
+            n--;
+        }
+        char[] arrReturn = new char[n];
+
+        for (int i = 0; i < n; i++) {
+            arrReturn[i] = arr[i];
+        }
+
+        return arrReturn;
     }
 
     private void viewSetup() {
@@ -403,40 +507,6 @@ public class MainActivity extends AppCompatActivity {
         t2 = findViewById(R.id.output);
     }
 
-    private void operation() {
-        if (!Double.isNaN(val1)) {
-            /*if (t2.getText().toString().charAt(0) == '-') {
-                val1 = (-1) * val1;
-            }*/
-            val2 = Double.parseDouble(t1.getText().toString());
-
-            switch (ACTION) {
-                case ADDITION:
-                    val1 = val1 + val2;
-                    break;
-                case SUBTRACTION:
-                    val1 = val1 - val2;
-                    break;
-                case MULTIPLICATION:
-                    val1 = val1 * val2;
-                    break;
-                case DIVISION:
-                    val1 = val1 / val2;
-                    break;
-                //case EXTRA: //plusMinus
-                  //  val1 = (-1) * val1;
-                    //break;
-                case EQU:
-                    break;
-            }
-            primeraVez = false;
-            if(!Double.isNaN(val1)) {
-                aux = val1;
-            }
-        } else {
-            val1 = Double.parseDouble(t1.getText().toString());
-        }
-    }
 
     // Remove error message that is already written there.
     private void ifErrorOnOutput() {
@@ -445,41 +515,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // Whether value if a double or not
-    private boolean ifReallyDecimal() {
-        return val1 == (int) val1;
-    }
-
-    private void noOperation() {
-        String inputExpression = t2.getText().toString();
-        if (!inputExpression.isEmpty() && !inputExpression.equals("Error")) {
-            if (inputExpression.contains("-")) {
-                inputExpression = inputExpression.replace("-", "");
-                t2.setText("");
-                val1 = Double.parseDouble(inputExpression);
-            }
-            if (inputExpression.contains("+")) {
-                inputExpression = inputExpression.replace("+", "");
-                t2.setText("");
-                val1 = Double.parseDouble(inputExpression);
-            }
-            if (inputExpression.contains("/")) {
-                inputExpression = inputExpression.replace("/", "");
-                t2.setText("");
-                val1 = Double.parseDouble(inputExpression);
-            }
-            if (inputExpression.contains("%")) {
-                inputExpression = inputExpression.replace("%", "");
-                t2.setText("");
-                val1 = Double.parseDouble(inputExpression);
-            }
-            if (inputExpression.contains("×")) {
-                inputExpression = inputExpression.replace("×", "");
-                t2.setText("");
-                val1 = Double.parseDouble(inputExpression);
-            }
-        }
-    }
 
     // Make text small if too many digits.
     private void exceedLength() {
@@ -488,47 +523,22 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void operationClicked(String op)
-    {
-        if(t2.length()!=0)
-        {
+    private void operationClicked(String op) {
+        if (t2.length() != 0) {
             t2.setText(t2.getText() + op);
-            count=0;
-        }
-        else
-        {
-            String text=t1.getText().toString();
-            if(text.length()>0)
-            {
-                String newText=text.substring(0,text.length()-1)+op;
+            count = 0;
+        } else {
+            String text = t1.getText().toString();
+            if (text.length() > 0) {
+                String newText = text.substring(0, text.length() - 1) + op;
                 t1.setText(newText);
             }
         }
     }
 
-    public static int factorial(int i) {
-        if(i>=0) {
-            if(i==0) {
-                return 1;
-            }
-            if(i==1) {
-                return 1;
-            }
-            else {
-                return i*factorial(i-1);
-            }
-        }else {
-            System.out.println("MathError");
-            return 0;
-        }
-    }
-    public static int ncr(int n,int m) {
-        return factorial(n)/(factorial(m)*factorial(n-m));
-    }
-
     private double calculate(String expression) {
-        String op1String ="";
-        String op2String ="";
+        String op1String = "";
+        String op2String = "";
 
         double op1 = 0;
         double op2 = 0;
@@ -537,12 +547,12 @@ public class MainActivity extends AppCompatActivity {
         boolean neg = false;
 
         int position = 0;
-        char arr[]=expression.toCharArray();
+        char arr[] = expression.toCharArray();
 
         boolean primeraVez = true;
         boolean cambiarSigno = false;
 
-        if(arr[0]=='-')
+        if (arr[0] == '-')
             neg = true;
 
         while ((arr[position] != '+' && arr[position] != '-' && arr[position] != '*' && arr[position] != '/') || primeraVez) {
@@ -551,22 +561,18 @@ public class MainActivity extends AppCompatActivity {
             primeraVez = false;
         }
         simbol = arr[position];
-        if(arr[position + 1] == '-') {
+        if (arr[position + 1] == '-') {
             cambiarSigno = true;
             position++;
         }
 
-        //if(neg) {
-          //  op1String = "-" + op1String;
-        //}
-
         for (int i = position + 1; i < arr.length; i++) {
-            if(arr[i] != '+' && arr[i] != '-' && arr[i] != '*' && arr[i] != '/') {
+            if (arr[i] != '+' && arr[i] != '-' && arr[i] != '*' && arr[i] != '/') {
                 op2String += arr[i];
             } else {
                 op1 = Double.valueOf(op1String);
                 op2 = Double.valueOf(op2String);
-                if(cambiarSigno) {
+                if (cambiarSigno) {
                     op2 = op2 * (-1);
                     cambiarSigno = false;
                 }
@@ -588,107 +594,14 @@ public class MainActivity extends AppCompatActivity {
                         op1 = op1 / op2;
                         break;
                     }
-                    case '2^x': {
-                        op1 =Math.pow(2, op1);
-                        break;
-                    }
-                    case 'x^3': {
-                        op1 =Math.pow(op1,3);
-                        break;
-                    }
-                    case 'e^x': {
-                        op1 =Math.exp(op1);;
-                        break;
-                    }
-                    case '1/x': {
-                        op1 =1/op1;
-                        break;
-                    }
-                    case 'cbrt': {
-                        op1 =Math.cbrt(op1);
-                        break;
-                    }
-                    case 'Ln': {
-                        op1 =Math.log(op1);
-                        break;
-                    }
-                    case 'x!': {
-                        factorial((int) op1);
-                    }
-                    case 'cos': {
-                        op1 =Math.cos(Math.toRadians(op1));;
-                        break;
-                    }
-                    case 'e': {
-                        op1 =Math.E;;
-                        break;
-                    }
-                    case 'arcCos': {
-                        op1 =Math.acos(Math.toRadians(op1));
-                        break;
-                    }
-                    case 'pi': {
-                        op1 =Math.PI;
-                        break;
-                    }
-                    case 'nrc': {
-                        op1=ncr((int)op1,(int)op2);
-                        break;
-                    }
-                    case 'x^2': {
-                        op1 =Math.pow(op1, 2);
-                        break;
-                    }
-                    case 'x^y': {
-                        op1 =Math.pow(op1, op2);
-                        break;
-                    }
-                    case '10^x': {
-                        op1 =Math.pow(10,op1);
-                        break;
-                    }
-                    case 'sqrt(x)': {
-                        op1 =Math.sqrt(op1);
-                        break;
-                    }
-                    case 'x^1/y': {
-                        op1 =+Math.pow(op1, 1/op2);
-                        break;
-                    }
-                    case 'log': {
-                        op1 =Math.log10(op1);
-                        break;
-                    }
-                    case 'sin': {
-                        op1 =Math.sin(Math.toRadians(op1));
-                        break;
-                    }
-                    case 'tan': {
-                        op1 =Math.tan(Math.toRadians(op1));
-                        break;
-                    }
-                    case 'arcSin': {
-                        op1 =Math.toDegrees(Math.asin(op1));
-                        break;
-                    }
-                    case 'arcTan': {
-                        op1 =Math.toDegrees(Math.atan(op1));
-                        break;
-                    }
-                    case 'NotCientifica': {
-                        op1 =op1*Math.pow(10,op2);
-                        break;
-                    }
-
-
                 }
                 simbol = arr[i];
-                if(arr[i + 1] == '-') {
+                if (arr[i + 1] == '-') {
                     cambiarSigno = true;
                     i++;
                 }
                 position = i;
-                op2String ="";
+                op2String = "";
                 op1String = String.valueOf(op1);
 
             }
@@ -697,7 +610,7 @@ public class MainActivity extends AppCompatActivity {
         op1 = Double.valueOf(op1String);
         op2 = Double.valueOf(op2String);
 
-        if(cambiarSigno) {
+        if (cambiarSigno) {
             op2 = op2 * (-1);
             cambiarSigno = false;
         }
@@ -721,7 +634,16 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        return op1;
+        return round(op1,5);
+    }
+
+
+    private static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        BigDecimal bd = new BigDecimal(Double.toString(value));
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 
 }
