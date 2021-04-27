@@ -179,20 +179,7 @@ public class MainActivity extends AppCompatActivity {
         b_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                if (t1.getText().length() > 0) {
-//                    ACTION = ADDITION;
-//                    operation();
-//                    if (!ifReallyDecimal()) {
-//                        t2.setText(val1 + "+");
-//                    } else {
-//                        t2.setText((int) val1 + "+");
-//                    }
-//                    t1.setText(null);
-//                } else if (t1.getText().length() == 0) {
-//                    t2.setText(val1 + "+");
-//                } else {
-//                    t2.setText("Error");
-//                }
+
                 operationClicked("+");
             }
         });
@@ -200,19 +187,7 @@ public class MainActivity extends AppCompatActivity {
         b_sub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                if (t1.getText().length() > 0) {
-//                    ACTION = SUBTRACTION;
-//                    operation();
-//                    if (t1.getText().length() > 0)
-//                        if (!ifReallyDecimal()) {
-//                            t2.setText(val1 + "-");
-//                        } else {
-//                            t2.setText((int) val1 + "-");
-//                        }
-//                    t1.setText(null);
-//                } else {
-//                    t2.setText("Error");
-//                }
+
                 operationClicked("-");
             }
         });
@@ -220,18 +195,7 @@ public class MainActivity extends AppCompatActivity {
         b_multi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                if (t1.getText().length() > 0) {
-//                    ACTION = MULTIPLICATION;
-//                    operation();
-//                    if (!ifReallyDecimal()) {
-//                        t2.setText(val1 + "×");
-//                    } else {
-//                        t2.setText((int) val1 + "×");
-//                    }
-//                    t1.setText(null);
-//                } else {
-//                    t2.setText("Error");
-//                }
+
                 operationClicked("*");
             }
         });
@@ -239,18 +203,7 @@ public class MainActivity extends AppCompatActivity {
         b_divide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                if (t1.getText().length() > 0) {
-//                    ACTION = DIVISION;
-//                    operation();
-//                    if (ifReallyDecimal()) {
-//                        t2.setText((int) val1 + "/");
-//                    } else {
-//                        t2.setText(val1 + "/");
-//                    }
-//                    t1.setText(null);
-//                } else {
-//                    t2.setText("Error");
-//                }
+
                 operationClicked("/");
 
             }
@@ -273,18 +226,7 @@ public class MainActivity extends AppCompatActivity {
         b_equal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                if (t1.getText().length() > 0) {
-//                    operation();
-//                    ACTION = EQU;
-//                    if (!ifReallyDecimal()) {
-//                        t2.setText(/*t2.getText().toString() + String.valueOf(val2) + "=" + */String.valueOf(val1));
-//                    } else {
-//                        t2.setText(/*t2.getText().toString() + String.valueOf(val2) + "=" + */String.valueOf((int) val1));
-//                    }
-//                    t1.setText(null);
-//                } else {
-//                    t2.setText("Error");
-//                }
+
 
                 if(t2.length()!=0)
                 {
@@ -405,81 +347,10 @@ public class MainActivity extends AppCompatActivity {
         t2 = findViewById(R.id.output);
     }
 
-    private void operation() {
-        if (!Double.isNaN(val1)) {
-            /*if (t2.getText().toString().charAt(0) == '-') {
-                val1 = (-1) * val1;
-            }*/
-            val2 = Double.parseDouble(t1.getText().toString());
-
-            switch (ACTION) {
-                case ADDITION:
-                    val1 = val1 + val2;
-                    break;
-                case SUBTRACTION:
-                    val1 = val1 - val2;
-                    break;
-                case MULTIPLICATION:
-                    val1 = val1 * val2;
-                    break;
-                case DIVISION:
-                    val1 = val1 / val2;
-                    break;
-                //case EXTRA: //plusMinus
-                  //  val1 = (-1) * val1;
-                    //break;
-                case EQU:
-                    break;
-            }
-            primeraVez = false;
-            if(!Double.isNaN(val1)) {
-                aux = val1;
-            }
-        } else {
-            val1 = Double.parseDouble(t1.getText().toString());
-        }
-    }
-
     // Remove error message that is already written there.
     private void ifErrorOnOutput() {
         if (t2.getText().toString().equals("Error")) {
             t2.setText("");
-        }
-    }
-
-    // Whether value if a double or not
-    private boolean ifReallyDecimal() {
-        return val1 == (int) val1;
-    }
-
-    private void noOperation() {
-        String inputExpression = t2.getText().toString();
-        if (!inputExpression.isEmpty() && !inputExpression.equals("Error")) {
-            if (inputExpression.contains("-")) {
-                inputExpression = inputExpression.replace("-", "");
-                t2.setText("");
-                val1 = Double.parseDouble(inputExpression);
-            }
-            if (inputExpression.contains("+")) {
-                inputExpression = inputExpression.replace("+", "");
-                t2.setText("");
-                val1 = Double.parseDouble(inputExpression);
-            }
-            if (inputExpression.contains("/")) {
-                inputExpression = inputExpression.replace("/", "");
-                t2.setText("");
-                val1 = Double.parseDouble(inputExpression);
-            }
-            if (inputExpression.contains("%")) {
-                inputExpression = inputExpression.replace("%", "");
-                t2.setText("");
-                val1 = Double.parseDouble(inputExpression);
-            }
-            if (inputExpression.contains("×")) {
-                inputExpression = inputExpression.replace("×", "");
-                t2.setText("");
-                val1 = Double.parseDouble(inputExpression);
-            }
         }
     }
 
@@ -506,26 +377,6 @@ public class MainActivity extends AppCompatActivity {
                 t1.setText(newText);
             }
         }
-    }
-
-    public static int factorial(int i) {
-        if(i>=0) {
-            if(i==0) {
-                return 1;
-            }
-            if(i==1) {
-                return 1;
-            }
-            else {
-                return i*factorial(i-1);
-            }
-        }else {
-            System.out.println("MathError");
-            return 0;
-        }
-    }
-    public static int ncr(int n,int m) {
-        return factorial(n)/(factorial(m)*factorial(n-m));
     }
 
     private double calculate(String expression) {
@@ -558,10 +409,6 @@ public class MainActivity extends AppCompatActivity {
             position++;
         }
 
-        //if(neg) {
-          //  op1String = "-" + op1String;
-        //}
-
         for (int i = position + 1; i < arr.length; i++) {
             if(arr[i] != '+' && arr[i] != '-' && arr[i] != '*' && arr[i] != '/') {
                 op2String += arr[i];
@@ -590,99 +437,6 @@ public class MainActivity extends AppCompatActivity {
                         op1 = op1 / op2;
                         break;
                     }
-                    /*
-                    case '2^x': {
-                        op1 =Math.pow(2, op1);
-                        break;
-                    }
-                    case 'x^3': {
-                        op1 =Math.pow(op1,3);
-                        break;
-                    }
-                    case 'e^x': {
-                        op1 =Math.exp(op1);;
-                        break;
-                    }
-                    case '1/x': {
-                        op1 =1/op1;
-                        break;
-                    }
-                    case 'cbrt': {
-                        op1 =Math.cbrt(op1);
-                        break;
-                    }
-                    case 'Ln': {
-                        op1 =Math.log(op1);
-                        break;
-                    }
-                    case 'x!': {
-                        factorial((int) op1);
-                    }
-                    case 'cos': {
-                        op1 =Math.cos(Math.toRadians(op1));;
-                        break;
-                    }
-                    case 'e': {
-                        op1 =Math.E;;
-                        break;
-                    }
-                    case 'arcCos': {
-                        op1 =Math.acos(Math.toRadians(op1));
-                        break;
-                    }
-                    case 'pi': {
-                        op1 =Math.PI;
-                        break;
-                    }
-                    case 'nrc': {
-                        op1=ncr((int)op1,(int)op2);
-                        break;
-                    }
-                    case 'x^2': {
-                        op1 =Math.pow(op1, 2);
-                        break;
-                    }
-                    case 'x^y': {
-                        op1 =Math.pow(op1, op2);
-                        break;
-                    }
-                    case '10^x': {
-                        op1 =Math.pow(10,op1);
-                        break;
-                    }
-                    case 'sqrt(x)': {
-                        op1 =Math.sqrt(op1);
-                        break;
-                    }
-                    case 'x^1/y': {
-                        op1 =+Math.pow(op1, 1/op2);
-                        break;
-                    }
-                    case 'log': {
-                        op1 =Math.log10(op1);
-                        break;
-                    }
-                    case 'sin': {
-                        op1 =Math.sin(Math.toRadians(op1));
-                        break;
-                    }
-                    case 'tan': {
-                        op1 =Math.tan(Math.toRadians(op1));
-                        break;
-                    }
-                    case 'arcSin': {
-                        op1 =Math.toDegrees(Math.asin(op1));
-                        break;
-                    }
-                    case 'arcTan': {
-                        op1 =Math.toDegrees(Math.atan(op1));
-                        break;
-                    }
-                    case 'NotCientifica': {
-                        op1 =op1*Math.pow(10,op2);
-                        break;
-                    }*/
-
 
                 }
                 simbol = arr[i];
