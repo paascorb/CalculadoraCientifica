@@ -588,6 +588,7 @@ public class MainActivity extends AppCompatActivity {
                         op1 = op1 / op2;
                         break;
                     }
+                    /*
                     case '2^x': {
                         op1 =Math.pow(2, op1);
                         break;
@@ -678,7 +679,7 @@ public class MainActivity extends AppCompatActivity {
                     case 'NotCientifica': {
                         op1 =op1*Math.pow(10,op2);
                         break;
-                    }
+                    }*/
 
 
                 }
