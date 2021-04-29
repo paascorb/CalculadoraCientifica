@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private Button b_plusMinus;
     private Button b_backspace;
 
+
     private TextView t1;
     private TextView t2;
 
@@ -435,6 +436,10 @@ public class MainActivity extends AppCompatActivity {
                     }
                     case '/': {
                         op1 = op1 / op2;
+                        break;
+                    }
+                    case 'π':{
+                        op1=UtilesMatemáticas.pi();
                         break;
                     }
 
