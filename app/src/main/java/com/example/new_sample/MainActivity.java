@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private Button b_backspace;
 
     private Button b_pi;
+    private Button b_e;
     private Button b_10x;
 
     private TextView in;
@@ -192,6 +193,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        b_e.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ifErrorOnOutput();
+                exceedLength();
+                if(in.getText().equals("Invalid Expression")){
+                    in.setText("");
+                }
+                if(puedePi(out.getText().toString()))
+                    out.setText(out.getText().toString() + UtilesMatemáticas.e());
+            }
+        });
+
         b_10x.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -202,13 +216,15 @@ public class MainActivity extends AppCompatActivity {
                 }else if(in.getText().toString().equals("")||in.getText().toString().equals("-")){
                     out.setText(UtilesMatemáticas.diezElevadoX(0.0)+"");
                 }else{
-                    if((Double) Double.parseDouble(in.getText().toString()) instanceof Double){
-                        out.setText(UtilesMatemáticas.diezElevadoX(Double.parseDouble(in.getText().toString()))+"");
-                    }else{
-                        String ultimo = ultimoNumero(in.getText().toString());
+                    try {
+                        if ((Double) Double.parseDouble(out.getText().toString()) instanceof Double) {
+                            out.setText(UtilesMatemáticas.diezElevadoX(Double.parseDouble(in.getText().toString())) + "");
+                        }
+                    } catch (NumberFormatException e) {
+                        String ultimo = ultimoNumero(out.getText().toString());
                         String partes[] = ultimo.split("º");
 
-                        out.setText(partes[0]+UtilesMatemáticas.diezElevadoX(Double.parseDouble(partes[1]))+"");
+                        out.setText(partes[0] + UtilesMatemáticas.diezElevadoX(Double.parseDouble(partes[1])) + "");
                         in.setText("");
                     }
                 }
@@ -538,6 +554,7 @@ public class MainActivity extends AppCompatActivity {
         b_backspace = findViewById(R.id.button_backspace);
 
         b_pi = findViewById(R.id.button_Pi);
+        b_e = findViewById(R.id.b_e);
         b_10x = findViewById(R.id.b_10x);
 
         in = findViewById(R.id.input);
@@ -726,9 +743,9 @@ public class MainActivity extends AppCompatActivity {
 
     public String ultimoNumero(String expression){
 
-        for(int i = expression.length()-1; i<=0; ++i){
+        for(int i = expression.length()-1; i>=0; --i){
             if(esSimbolo(expression.charAt(i))){
-                return expression.substring(0,i)+'º'+expression.substring(i+1,expression.length());
+                return expression.substring(0,i+1)+'º'+expression.substring(i+1,expression.length());
             }
         }
         return expression;
