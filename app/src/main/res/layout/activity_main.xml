@@ -247,7 +247,7 @@
         app:layout_constraintVertical_bias="0.677" />
 
     <Button
-        android:id="@+id/button22"
+        android:id="@+id/b_10x"
         android:layout_width="70dp"
         android:layout_height="45dp"
         android:background="@drawable/boton_cientifica"
@@ -279,7 +279,7 @@
         app:layout_constraintVertical_bias="0.53" />
 
     <Button
-        android:id="@+id/button11"
+        android:id="@+id/button_Pi"
         android:layout_width="70dp"
         android:layout_height="45dp"
         android:background="@drawable/boton_cientifica"
@@ -327,7 +327,7 @@
         app:layout_constraintVertical_bias="0.385" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/button_xCubo"
         android:layout_width="70dp"
         android:layout_height="45dp"
         android:background="@drawable/boton_cientifica"
@@ -601,7 +601,7 @@
         app:layout_constraintVertical_bias="0.961" />
 
     <Button
-        android:id="@+id/button32"
+        android:id="@+id/button7"
         android:layout_width="70dp"
         android:layout_height="45dp"
         android:background="@drawable/circle_button"
