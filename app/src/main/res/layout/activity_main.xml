@@ -56,7 +56,7 @@
         app:layout_constraintVertical_bias="0.677" />
 
     <Button
-        android:id="@+id/button18"
+        android:id="@+id/b_ncr"
         android:layout_width="70dp"
         android:layout_height="45dp"
         android:background="@drawable/boton_cientifica"
@@ -215,7 +215,7 @@
         app:layout_constraintVertical_bias="0.961" />
 
     <Button
-        android:id="@+id/button19"
+        android:id="@+id/b_factorial"
         android:layout_width="70dp"
         android:layout_height="45dp"
         android:background="@drawable/boton_cientifica"
@@ -343,7 +343,7 @@
         app:layout_constraintVertical_bias="0.53" />
 
     <Button
-        android:id="@+id/button30"
+        android:id="@+id/b_cbrt"
         android:layout_width="70dp"
         android:layout_height="45dp"
         android:background="@drawable/boton_cientifica"

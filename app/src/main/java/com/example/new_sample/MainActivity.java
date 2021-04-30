@@ -14,6 +14,7 @@ import android.widget.TextView;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -51,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
     private Button b_eX;
     private Button b_inv;
     private Button b_sqrt;
+    private Button b_cbrt;
+    private Button b_factorial;
+    private Button b_ncr;
     private Button b_cos;
     private Button b_sin;
     private Button b_tan;
@@ -419,16 +423,21 @@ public class MainActivity extends AppCompatActivity {
                 }else if(in.getText().toString().equals("")||in.getText().toString().equals("-")){
                     out.setText(UtilesMatemáticas.raízCuadrada(0)+"");
                 }else{
-                    try {
-                        if ((Double) Double.parseDouble(out.getText().toString()) instanceof Double) {
-                            if(out.getText().charAt(0) == '-'){
-                                out.setText("Entrada inválida");
-                            }else {
-                                out.setText(UtilesMatemáticas.raízCuadrada(Double.parseDouble(in.getText().toString())) + "");
+                    //try {
+                        Double d = (Double) Double.parseDouble(in.getText().toString());
+                        if (d instanceof Double) {
+                            if(d<0){
+                                out.setText("Math Error");
+                                return;
+                            }else{
+                                out.setText(UtilesMatemáticas.raízCuadrada(d) + "");
                             }
+
+
                         }
-                    } catch (NumberFormatException e) {
-                        if(!esSimbolo(out.getText().charAt(out.getText().toString().length()-1))) {
+
+                    //} catch (NumberFormatException e) {
+                       /* if(!esSimbolo(out.getText().charAt(out.getText().toString().length()-1))) {
                             if(ultimoSignoMenos(out.getText().toString())){
                                 out.setText("Entrada inválida");
                             }else {
@@ -438,11 +447,85 @@ public class MainActivity extends AppCompatActivity {
                                 out.setText(partes[0] + UtilesMatemáticas.raízCuadrada(Double.parseDouble(partes[1])) + "");
                                 in.setText("");
                             }
+                        }*/
+                    //}
+                }
+            }
+        });
+
+
+        b_cbrt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ifErrorOnOutput();
+                exceedLength();
+                if (in.getText().equals("Invalid Expression")) {
+                    in.setText("");
+                } else if (in.getText().toString().equals("") || in.getText().toString().equals("-")) {
+                    out.setText(UtilesMatemáticas.raízCubica(0) + "");
+                } else {
+                    Double d = (Double) Double.parseDouble(in.getText().toString());
+                    if (d instanceof Double) {
+                        if(d<0){
+                            out.setText("-"+UtilesMatemáticas.raízCubica((-1)*d)+"");
+                        }else{
+                            out.setText(UtilesMatemáticas.raízCubica(d) + "");
                         }
+
+
                     }
                 }
             }
         });
+
+
+
+
+
+
+        b_factorial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ifErrorOnOutput();
+                exceedLength();
+                if (in.getText().equals("Invalid Expression")) {
+                    in.setText("");
+                } else if (in.getText().toString().equals("") || in.getText().toString().equals("-")) {
+                    out.setText(UtilesMatemáticas.factorial(0) + "");
+                } else {
+                    Integer i = (Integer) Integer.parseInt(in.getText().toString());
+                    if (i instanceof Integer) {
+                        if(i<0){
+                            out.setText("Math Error");
+                            return;
+                        }else{
+                            out.setText(UtilesMatemáticas.factorial(i) + "");
+                        }
+
+
+                    }
+                }
+            }
+        });
+
+
+        b_ncr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ifErrorOnOutput();
+                exceedLength();
+                String cadena=out.getText().toString();
+                out.setText(cadena+"NCR");
+                //int n=NCRPrimero();
+                //int m=NCRSegundo();
+                //out.setText(UtilesMatemáticas.ncr(n,m));
+
+            }
+        });
+
+
+
+
 
         b_cos.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -529,7 +612,7 @@ public class MainActivity extends AppCompatActivity {
                         if (d instanceof Double) {
                             for(int n=1;n<400;n++) {
                                 if (d == (90 * n)) {
-                                    out.setText("Invalid Expression");
+                                    out.setText("Math Error");
                                     return;
                                 }
                             }
@@ -551,6 +634,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+
 
 
         b_dot.setOnClickListener(new View.OnClickListener() {
@@ -682,10 +768,20 @@ public class MainActivity extends AppCompatActivity {
                 if (expression.length() == 0)
                     expression = "0.0";
                 try {
-                    result = calculate(expression);
-                    out.setText(result + "");
-                    primeraVez = false;
-                    aux = result;
+                    /**
+                     * Probando el usar NCR en el boton =
+                     */
+                    if(BuscarNCR(expression.toCharArray())>=0){
+                        int n=NCRPrimero();
+                        int m=NCRSegundo();
+                        out.setText(UtilesMatemáticas.ncr(n,m));
+                    }else {
+
+                        result = calculate(expression);
+                        out.setText(result + "");
+                        primeraVez = false;
+                        aux = result;
+                    }
                 } catch (Exception e) {
                     try {
                         if ((Double) Double.parseDouble(expression) instanceof Double) {
@@ -771,6 +867,106 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    private int NCRPrimero(){
+        ArrayList entrada1=new ArrayList();
+        if (in.getText().equals("Invalid Expression")) {
+            in.setText("");
+        } else if (in.getText().toString().equals("") || in.getText().toString().equals("-")) {
+            out.setText(UtilesMatemáticas.ncr(0,0) + "");
+        } else {
+                    //out.setText(i + "NCR");
+                    for (int m = 0; m < in.getText().length() - 3; m++) {
+                        entrada1.add(m, in.getText().charAt(m));
+                    }
+
+                    System.out.println("################################-------PRIMERO" + entrada1.toString());
+                    System.out.println("################################-------PRIMERO" + entrada1.size());
+                    System.out.println("################################-------PRIMERO" + entrada1.get(0).toString());
+                    String result = "";
+                    for (int q = 0; q < entrada1.size(); q++) {
+                        result += entrada1.get(q).toString();
+                    }
+                    System.out.println("#################################-------PRIMERO" + result.toString());
+                    Integer entero1 = Integer.parseInt(result.toString());
+                    //String numero1=new String(entrada1);
+                    //String numero1=entrada1.toString();
+                    String numero1 = entero1.toString();
+                    System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$--------Cadena1: " + numero1.toString());
+                    /*int l=0;
+                    while(l<entrada1.length&&entrada1[i]<999999999&&entrada1[i]>0){
+                        numero1+=entrada1[i];
+                        l++;
+                    }
+                    */
+                    Integer n1 = (Integer) Integer.parseInt(numero1);
+
+                    return n1;
+                           /* out.setText((""));
+                            Integer n = (Integer) Integer.parseInt(in.getText().toString());
+                            if (n instanceof Integer) {
+                                if (n < 0) {
+                                    out.setText("Math Error");
+                                    return;
+                                } else {
+                                    out.setText(UtilesMatemáticas.ncr(i, n));
+                                }
+                            }*/
+
+
+            }
+        return 0;
+        }
+    private int NCRSegundo(){
+        ArrayList entrada2=new ArrayList();
+        if (in.getText().equals("Invalid Expression")) {
+            in.setText("");
+        } else if (in.getText().toString().equals("") || in.getText().toString().equals("-")) {
+            out.setText(UtilesMatemáticas.ncr(0,0) + "");
+        }
+        else {
+                    String segundoNum=in.getText().toString();
+                    int posicion=BuscarNCR(segundoNum.toCharArray());
+                    System.out.println("#################################-------SEGUNDO-------"+segundoNum);
+                    for (int j = segundoNum.length(); j > posicion; j--) {
+                        entrada2.add(j,in.getText().charAt(j));
+                    }
+
+                   //String numero2=new String(entrada2);
+                    /*
+                    for(int k=0;k<entrada2.length;k++){
+                        numero2+=entrada2[k];
+                    }
+                    */
+            System.out.println("################################-------SEGUNDO-----toString--------"+entrada2.toString());
+            System.out.println("################################-------SEGUNDO-----size-----------"+entrada2.size());
+            System.out.println("################################-------SEGUNDO-----getToString-------"+entrada2.get(0).toString());
+            String result="";
+            for(int q=0;q<entrada2.size();q++){
+                result+=entrada2.get(q).toString();
+            }
+            System.out.println("################################-------SEGUNDO-------result--------"+result.toString());
+            Integer entero2=Integer.parseInt(result.toString());
+            String numero2=entero2.toString();
+            System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$-------Cadena2: "+numero2.toString());
+                    Integer n2 = (Integer) Integer.parseInt(numero2);
+                    return n2;
+                           /* out.setText((""));
+                            Integer n = (Integer) Integer.parseInt(in.getText().toString());
+                            if (n instanceof Integer) {
+                                if (n < 0) {
+                                    out.setText("Math Error");
+                                    return;
+                                } else {
+                                    out.setText(UtilesMatemáticas.ncr(i, n));
+                                }
+                            }*/
+                }
+        return 0;
+            }
+
+
+
     private boolean permiteSimbolo(String s, String sim){
         char[] arr = s.toCharArray();
         int n=arr.length-1;
@@ -788,6 +984,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
+    private int BuscarNCR (char[] cad){
+        int i=0;
+        while(i<cad.length){
+            if(cad[i]=='N'){
+                if(cad[i+1]=='C') {
+                    if (cad[i + 2] == 'R') {
+                        return (i + 2);
+                    }else{
+                        i++;
+                    }
+
+                }else{
+                    i++;
+                }
+                }else{
+                i++;
+            }
+        }
+        return i;
+    }
     private boolean puedeDecimal(String s){
         char[] arr = s.toCharArray();
         int n=arr.length-1;
@@ -885,9 +1102,12 @@ public class MainActivity extends AppCompatActivity {
         b_eX = findViewById(R.id.b_eX);
         b_inv = findViewById(R.id.b_inv);
         b_sqrt = findViewById(R.id.b_sqrt);
+        b_cbrt = findViewById(R.id.b_cbrt);
         b_cos = findViewById(R.id.b_cos);
         b_sin = findViewById(R.id.b_sin);
         b_tan= findViewById(R.id.b_tan);
+        b_factorial=findViewById(R.id.b_factorial);
+        b_ncr=findViewById(R.id.b_ncr);
 
         in = findViewById(R.id.input);
         out = findViewById(R.id.output);
