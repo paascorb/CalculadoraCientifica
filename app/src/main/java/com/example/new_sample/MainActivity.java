@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     private Button b_sqrt;
     private Button b_cos;
     private Button b_sin;
+    private Button b_tan;
 
     private TextView in;
     private TextView out;
@@ -508,6 +509,50 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+
+        b_tan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ifErrorOnOutput();
+                exceedLength();
+                Double tangente;
+                DecimalFormat df = new DecimalFormat("#");
+                df.setMaximumFractionDigits(8);
+                if(in.getText().equals("Invalid Expression")){
+                    in.setText("");
+                }else if(in.getText().toString().equals("")||in.getText().toString().equals("-")){
+                    out.setText(UtilesMatemáticas.tangente(0)+"");
+                }else{
+                    //try {
+                    Double d=(Double) Double.parseDouble(in.getText().toString());
+                        if (d instanceof Double) {
+                            for(int n=1;n<400;n++) {
+                                if (d == (90 * n)) {
+                                    out.setText("Invalid Expression");
+                                    return;
+                                }
+                            }
+                            tangente = Double.parseDouble(in.getText().toString());
+                            out.setText(df.format(UtilesMatemáticas.tangente(tangente)) + "");
+                        }
+                   // }
+                    /*
+                    catch (NumberFormatException e) {
+                        if(!esSimbolo(out.getText().charAt(out.getText().toString().length()-1))) {
+                            String ultimo = ultimoNumero(out.getText().toString());
+                            String partes[] = ultimo.split("º");
+
+                            tangente = Double.parseDouble(partes[1]);
+                            out.setText(partes[0] + df.format(UtilesMatemáticas.tangente(tangente)) + "");
+                            in.setText("");
+                        }
+                    }*/
+                }
+            }
+        });
+
+
         b_dot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -842,6 +887,7 @@ public class MainActivity extends AppCompatActivity {
         b_sqrt = findViewById(R.id.b_sqrt);
         b_cos = findViewById(R.id.b_cos);
         b_sin = findViewById(R.id.b_sin);
+        b_tan= findViewById(R.id.b_tan);
 
         in = findViewById(R.id.input);
         out = findViewById(R.id.output);
