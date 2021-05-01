@@ -16,6 +16,12 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+/**
+ * Esta clase define el comportamiento de la calculadora científica, su funcionalidad y elementos.
+ * @author: Pablo Ascorbe, Alberto Escalona, David Íñiguez e Iñaki Lafuente a partir de la librería de ritik2410
+ * @version: 01/05/2021
+ * @see <a href = "https://github.com/ritik2410/Elegant_Calculator"/>Elegant_Calculator</a>
+ */
 
 public class MainActivity extends AppCompatActivity {
 
@@ -89,6 +95,10 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         b1.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b1, permite escribir un 1 en la calculadora, borrando el texto invalid expression si estuviese
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 ifErrorOnOutput();
@@ -101,6 +111,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b2.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b2, permite escribir un 2 en la calculadora, borrando el texto invalid expression si estuviese
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 ifErrorOnOutput();
@@ -113,6 +127,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b3.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b3, permite escribir un 3 en la calculadora, borrando el texto invalid expression si estuviese
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 ifErrorOnOutput();
@@ -125,6 +143,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b4.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b4, permite escribir un 4 en la calculadora, borrando el texto invalid expression si estuviese
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 ifErrorOnOutput();
@@ -137,6 +159,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b5.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b5, permite escribir un 5 en la calculadora, borrando el texto invalid expression si estuviese
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 ifErrorOnOutput();
@@ -149,6 +175,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b6.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b6, permite escribir un 6 en la calculadora, borrando el texto invalid expression si estuviese
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 ifErrorOnOutput();
@@ -161,6 +191,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b7.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b7, permite escribir un 7 en la calculadora, borrando el texto invalid expression si estuviese
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 ifErrorOnOutput();
@@ -173,6 +207,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b8.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b8, permite escribir un 8 en la calculadora, borrando el texto invalid expression si estuviese
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 ifErrorOnOutput();
@@ -185,6 +223,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b9.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b9, permite escribir un 9 en la calculadora, borrando el texto invalid expression si estuviese
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 ifErrorOnOutput();
@@ -197,6 +239,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b0.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b0, permite escribir un 0 en la calculadora, borrando el texto invalid expression si estuviese
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 ifErrorOnOutput();
@@ -209,6 +255,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b_ParenIZ.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b_ParenIZ, permite escribir un ( en la calculadora, borrando el texto invalid expression si estuviese
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 ifErrorOnOutput();
@@ -221,6 +271,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b_ParenDe.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b_ParenDe, permite escribir un ) en la calculadora, borrando el texto invalid expression si estuviese
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 ifErrorOnOutput();
@@ -233,6 +287,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b_pi.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b_pi, permite escribir el numero pi en la calculadora, borrando el texto invalid expression si estuviese
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 ifErrorOnOutput();
@@ -246,6 +304,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b_e.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b_e, permite escribir el numero e en la calculadora, borrando el texto invalid expression si estuviese
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 ifErrorOnOutput();
@@ -259,6 +321,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b_10x.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b_10x, permite escribir la expresión potencia de 10 en la calculadora, borrando el texto invalid expression si estuviese
+             * Hace las comprobaciones pertinentes para mostrar error si lo hubiese y no permitir operaciones que no sean correctas
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 ifErrorOnOutput();
@@ -292,6 +359,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b_log10.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b_log10, permite escribir la expresión logaritmo base 10 en la calculadora, borrando el texto invalid expression si estuviese
+             * Hace las comprobaciones pertinentes para mostrar error si lo hubiese y no permitir operaciones que no sean correctas
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 ifErrorOnOutput();
@@ -325,6 +397,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b_ln.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b_ln, permite escribir la expresión logaritmo neperiano en la calculadora, borrando el texto invalid expression si estuviese
+             * Hace las comprobaciones pertinentes para mostrar error si lo hubiese y no permitir operaciones que no sean correctas
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 ifErrorOnOutput();
@@ -358,6 +435,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b_cuadrado.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b_cuadrado, permite escribir la expresión cuadrado en la calculadora, borrando el texto invalid expression si estuviese
+             * Hace las comprobaciones pertinentes para mostrar error si lo hubiese y no permitir operaciones que no sean correctas
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 ifErrorOnOutput();
@@ -391,6 +473,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b_cubo.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b_cuadrado, permite escribir la expresión cubo en la calculadora, borrando el texto invalid expression si estuviese
+             * Hace las comprobaciones pertinentes para mostrar error si lo hubiese y no permitir operaciones que no sean correctas
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 ifErrorOnOutput();
@@ -424,6 +511,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b_dosX.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b_dosX, permite escribir la expresión potencia de 2 en la calculadora, borrando el texto invalid expression si estuviese
+             * Hace las comprobaciones pertinentes para mostrar error si lo hubiese y no permitir operaciones que no sean correctas
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 ifErrorOnOutput();
@@ -457,6 +549,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b_eX.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b_eX, permite escribir la expresión e elevado al numero en la calculadora, borrando el texto invalid expression si estuviese
+             * Hace las comprobaciones pertinentes para mostrar error si lo hubiese y no permitir operaciones que no sean correctas
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 ifErrorOnOutput();
@@ -490,6 +587,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b_inv.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b_inv, permite escribir la expresión inverso de un numero en la calculadora, borrando el texto invalid expression si estuviese
+             * Hace las comprobaciones pertinentes para mostrar error si lo hubiese y no permitir operaciones que no sean correctas
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
 
@@ -526,6 +628,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b_sqrt.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b_sqrt, permite escribir la expresión raiz cuadrada de un numero en la calculadora, borrando el texto invalid expression si estuviese
+             * Hace las comprobaciones pertinentes para mostrar error si lo hubiese y no permitir operaciones que no sean correctas
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 ifErrorOnOutput();
@@ -579,6 +686,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         b_cbrt.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b_cbrt, permite escribir la expresión raiz cubica de un numero en la calculadora, borrando el texto invalid expression si estuviese
+             * Hace las comprobaciones pertinentes para mostrar error si lo hubiese y no permitir operaciones que no sean correctas
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 /*ifErrorOnOutput();
@@ -636,6 +748,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         b_factorial.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b_factorial, permite escribir la expresión factorial de un numero en la calculadora, borrando el texto invalid expression si estuviese
+             * Hace las comprobaciones pertinentes para mostrar error si lo hubiese y no permitir operaciones que no sean correctas
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 ifErrorOnOutput();
@@ -711,6 +828,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         b_ncr.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 ifErrorOnOutput();
@@ -723,6 +841,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b_xAlay.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b_xAlay, permite escribir la expresión x elevado a y en la calculadora
+             * Hace las comprobaciones pertinentes para mostrar error si lo hubiese y no permitir operaciones que no sean correctas
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 ifErrorOnOutput();
@@ -735,6 +858,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b_xRaizY.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b_xRaizY, permite escribir la expresión raiz de grado y del numero x en la calculadora
+             * Hace las comprobaciones pertinentes para mostrar error si lo hubiese y no permitir operaciones que no sean correctas
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 ifErrorOnOutput();
@@ -747,6 +875,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b_logyX.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b_logyX, permite escribir la expresión logaritmo base y del numero x en la calculadora
+             * Hace las comprobaciones pertinentes para mostrar error si lo hubiese y no permitir operaciones que no sean correctas
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 ifErrorOnOutput();
@@ -759,6 +892,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b_cos.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b_cos, permite escribir la expresión coseno de un numero en la calculadora, borrando el texto invalid expression si estuviese
+             * Hace las comprobaciones pertinentes para mostrar error si lo hubiese y no permitir operaciones que no sean correctas
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 ifErrorOnOutput();
@@ -797,6 +935,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b_Acos.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b_Acos, permite escribir la expresión arcoseno de un numero en la calculadora, borrando el texto invalid expression si estuviese
+             * Hace las comprobaciones pertinentes para mostrar error si lo hubiese y no permitir operaciones que no sean correctas
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 ifErrorOnOutput();
@@ -835,6 +978,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b_sin.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b_sin, permite escribir la expresión seno de un numero en la calculadora, borrando el texto invalid expression si estuviese
+             * Hace las comprobaciones pertinentes para mostrar error si lo hubiese y no permitir operaciones que no sean correctas
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 ifErrorOnOutput();
@@ -873,6 +1021,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b_Asen.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b_Asen, permite escribir la expresión arcoseno de un numero en la calculadora, borrando el texto invalid expression si estuviese
+             * Hace las comprobaciones pertinentes para mostrar error si lo hubiese y no permitir operaciones que no sean correctas
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 ifErrorOnOutput();
@@ -913,6 +1066,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         b_tan.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b_tan, permite escribir la expresión tangente de un numero en la calculadora, borrando el texto invalid expression si estuviese
+             * Hace las comprobaciones pertinentes para mostrar error si lo hubiese y no permitir operaciones que no sean correctas
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 ifErrorOnOutput();
@@ -960,6 +1118,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b_Atan.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b_Atan, permite escribir la expresión arcotangente de un numero en la calculadora, borrando el texto invalid expression si estuviese
+             * Hace las comprobaciones pertinentes para mostrar error si lo hubiese y no permitir operaciones que no sean correctas
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 ifErrorOnOutput();
@@ -1011,6 +1174,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         b_dot.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b_dot, permite escribir un punto decimal en la calculadora, borrando el texto invalid expression si estuviese
+             * e impidiendo que haya mas de un punto decimal por número
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 exceedLength();
@@ -1027,6 +1195,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b_ans.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b_ans, permite escribir la respuesta anterior en la calculadora, borrando el texto invalid expression si estuviese
+             * y añadiendo un 0 en el caso de que no se haya realizado ninguna operación previa
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 if(in.getText().equals("Invalid Expression")){
@@ -1041,6 +1214,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b_add.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b_add, permite escribir un + en la calculadora, borrando el texto invalid expression si estuviese
+             * y comprobando que la sintaxis lo permite, en caso contrario no añade nada
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 if(in.getText().equals("Invalid Expression")){
@@ -1057,6 +1235,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b_sub.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b_sub, permite escribir un - en la calculadora, borrando el texto invalid expression si estuviese
+             * y realizando las comprobaciones oportunas para que permita escribir numeros negativos pero no permita sintaxis incorrectas.
+             * Se da por válida la sintaxis de dos símbolos seguidos siempre que el segundo sea un - representando un numero negativo: 1*-5
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 if(in.getText().equals("Invalid Expression")){
@@ -1086,6 +1270,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b_multi.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b_multi, permite escribir un * en la calculadora, borrando el texto invalid expression si estuviese
+             * y comprobando que la sintaxis lo permite, en caso contrario no añade nada
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 if(in.getText().equals("Invalid Expression")){
@@ -1101,6 +1290,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b_divide.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b_divide, permite escribir una / en la calculadora, borrando el texto invalid expression si estuviese
+             * y comprobando que la sintaxis lo permite, en caso contrario no añade nada
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 if(in.getText().equals("Invalid Expression")){
@@ -1117,6 +1311,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b_plusMinus.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b_plusMinus, permite  poner en negativo el resultado actual, borrando el texto invalid expression si estuviese
+             * Funciona con la expresión y con el resultado calculado. Pone el opuesto como resultado para seguir calculando desde ahi
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 if(in.getText().equals("Invalid Expression")){
@@ -1135,6 +1334,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b_equal.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b_equal, permite ecalcular el resultado de la expresión escrita, con caso especial por si esta vacía la expresion
+             * y empleando el metodo calculate que se ve mas adelante. Si sucede una excepción muestra Invalid Expression
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
 
@@ -1189,6 +1393,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b_clear.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b_clear, permite borrar los campos de texto
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 in.setText("");
@@ -1197,6 +1405,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         b_backspace.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Listener para el botón b_backspace, permite eliminar el ultimo caracter escrito en el cuadro de texto de escritura de la expresion, borrando el texto invalid expression si estuviese
+             * @param view vista en la que esta el boton
+             */
             @Override
             public void onClick(View view) {
                 if(in.getText().equals("Invalid Expression")){
@@ -1231,6 +1443,11 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
+            /**
+             * Listener para calcular el resultado provisional de la expresion escrita hasta el momento, con casos particulares para calcular el resultado correctamente de la expresión mas larga
+             * valida hasta el momento, ignorando los ultimos signos: 14+8*- mostraría 22. Si es un número lo muestra tal cual. Se activa cada vez que el texto de la expresión cambia
+             * @param s interfaz de elementos que se puede editar su contenido
+             */
             @Override
             public void afterTextChanged(Editable s) {
                 if (out.getText().toString().length() > 0) {
@@ -1273,6 +1490,10 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
+            /**
+             * Listener para mostrar Math Error en caso de un resultado NaN
+             * @param s interfaz de elementos que se puede editar su contenido
+             */
             @Override
             public void afterTextChanged(Editable s) {
                 if (in.getText().toString().equals("NaN")){
@@ -1283,112 +1504,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
-
-    private int NCRPrimero(){
-        ArrayList entrada1=new ArrayList();
-        if (in.getText().equals("Invalid Expression")) {
-            in.setText("");
-        } else if (in.getText().toString().equals("") || in.getText().toString().equals("-")) {
-            out.setText(UtilesMatemáticas.ncr(0,0) + "");
-        } else {
-                    //out.setText(i + "NCR");
-            String primerNum=in.getText().toString();
-            boolean esta=false;
-
-            int posicion=BuscarNCR(primerNum.toCharArray());
-
-                    for (int m = 0; m < posicion; m++) {
-                        entrada1.add(m, in.getText().charAt(m));
-                    }
-
-                    System.out.println("################################-------PRIMERO" + entrada1.toString());
-                    System.out.println("################################-------PRIMERO" + entrada1.size());
-                    System.out.println("################################-------PRIMERO" + entrada1.get(0).toString());
-                    String result = "";
-                    for (int q = 0; q < entrada1.size(); q++) {
-                        result += entrada1.get(q).toString();
-                    }
-                    System.out.println("#################################-------PRIMERO" + result.toString());
-                    Integer entero1 = Integer.parseInt(result.toString());
-                    //String numero1=new String(entrada1);
-                    //String numero1=entrada1.toString();
-                    String numero1 = entero1.toString();
-                    System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$--------Cadena1: " + numero1.toString());
-                    /*int l=0;
-                    while(l<entrada1.length&&entrada1[i]<999999999&&entrada1[i]>0){
-                        numero1+=entrada1[i];
-                        l++;
-                    }
-                    */
-                    Integer n1 = (Integer) Integer.parseInt(numero1);
-
-                    return n1;
-                           /* out.setText((""));
-                            Integer n = (Integer) Integer.parseInt(in.getText().toString());
-                            if (n instanceof Integer) {
-                                if (n < 0) {
-                                    out.setText("Math Error");
-                                    return;
-                                } else {
-                                    out.setText(UtilesMatemáticas.ncr(i, n));
-                                }
-                            }*/
-
-
-            }
-        return 0;
-        }
-    private int NCRSegundo(){
-        ArrayList entrada2=new ArrayList();
-        if (in.getText().equals("Invalid Expression")) {
-            in.setText("");
-        } else if (in.getText().toString().equals("") || in.getText().toString().equals("-")) {
-            out.setText(UtilesMatemáticas.ncr(0,0) + "");
-        }
-        else {
-                    String segundoNum=in.getText().toString();
-                    boolean esta=false;
-
-                    int posicion1=BuscarNCR(segundoNum.toCharArray());
-                    System.out.println("#################################-------SEGUNDO-------"+segundoNum);
-                    for (int j = segundoNum.length(); j > posicion1; j--) {
-                        entrada2.add(j,in.getText().charAt(j));
-                    }
-
-                   //String numero2=new String(entrada2);
-                    /*
-                    for(int k=0;k<entrada2.length;k++){
-                        numero2+=entrada2[k];
-                    }
-                    */
-            System.out.println("################################-------SEGUNDO-----toString--------"+entrada2.toString());
-            System.out.println("################################-------SEGUNDO-----size-----------"+entrada2.size());
-            System.out.println("################################-------SEGUNDO-----getToString-------"+entrada2.get(0).toString());
-            String result="";
-            for(int q=0;q<entrada2.size();q++){
-                result+=entrada2.get(q).toString();
-            }
-            System.out.println("################################-------SEGUNDO-------result--------"+result.toString());
-            Integer entero2=Integer.parseInt(result.toString());
-            String numero2=entero2.toString();
-            System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$-------Cadena2: "+numero2.toString());
-                    Integer n2 = (Integer) Integer.parseInt(numero2);
-                    return n2;
-                           /* out.setText((""));
-                            Integer n = (Integer) Integer.parseInt(in.getText().toString());
-                            if (n instanceof Integer) {
-                                if (n < 0) {
-                                    out.setText("Math Error");
-                                    return;
-                                } else {
-                                    out.setText(UtilesMatemáticas.ncr(i, n));
-                                }
-                            }*/
-                }
-        return 0;
-            }
-
+    /**
+     * Divide la cadena en dos, separando por el operando ncr
+     * @return int 0
+     */
             private int NCR(){
                 ArrayList entrada1=new ArrayList();
                 ArrayList entrada2=new ArrayList();
@@ -1486,6 +1605,12 @@ public class MainActivity extends AppCompatActivity {
                 return 0;
             }
 
+    /**
+     * Método que analiza si es válido escribir el símbolo sim a continuación en la expresión, caso especial para el - ya que es el único que puede ir detrás de otro símbolo.
+     * @param s es la propia expresión
+     * @param sim simbolo en concretoq ue se va a analizar si es válido sintácticamente en la expresion
+     * @return true si el símbolo se puede escribir a continuación y false si sería sintaxis incorrecta
+     */
     private boolean permiteSimbolo(String s, String sim){
         char[] arr = s.toCharArray();
         int n=arr.length-1;
@@ -1503,7 +1628,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
+    /**
+     * Método que detecta si hay NCR en la cadena
+     * @param cad es la cadena en cuestion
+     * @return true si hay NCR en la cadena, falso en caso contrario
+     */
     private int  BuscarNCR (char[] cad){
         int i=0;
         boolean esta=false;
@@ -1518,6 +1647,12 @@ public class MainActivity extends AppCompatActivity {
         }
         return i;
     }
+
+    /**
+     * Método que analiza si la expresión permite escribir un punto decimal, es decir si el último número no tenía punto hasta ahora
+     * @param s es la propia expresión
+     * @return true si permite un decimal a continuación y false si sería sintaxis incorrecta
+     */
     private boolean puedeDecimal(String s){
         char[] arr = s.toCharArray();
         int n=arr.length-1;
@@ -1535,6 +1670,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Método que transforma un array de caracteres en una string
+     * @param arr array de caracteres a transformar
+     * @return string correspondiente al array de caracteres
+     */
     private String charArrayToString(char[] arr) {
         String s = "";
 
@@ -1544,6 +1684,11 @@ public class MainActivity extends AppCompatActivity {
         return s;
     }
 
+    /**
+     * Método que calcula el número de símbolos en un array de caracteres, correspondiente a la expresión. El - (marca de numero negativo) inicial no se cuenta
+     * @param arr es la propia expresión
+     * @return int con el numero de símbolos (sin contar el negativo inicial si lo hubiere)
+     */
     private int getNumSimbolos(char[] arr) {
         int position = 0;
         int contador = 0;
@@ -1563,10 +1708,21 @@ public class MainActivity extends AppCompatActivity {
         return contador;
     }
 
+    /**
+     * Método que analiza si el caracter en cuestión es uno de los símbolos de las operaciones (+,-,*,/)
+     * @param caracter caracter a analizar
+     * @return true si es un símbolo de operación y false en caso contrario
+     */
     private boolean esSimbolo(char caracter) {
         return (caracter == '+' || caracter == '-' || caracter == '*' || caracter == '/');
     }
 
+    /**
+     * Método que elimina de la expresión los ultimos simbolos que finalizan la expresión(18*9+-, en este caso deja 18*9)
+     * Se emplea para crear una operación válida para el cálculo automático del resultado provisional
+     * @param arr es la propia expresión
+     * @return array de caracteres con la expresión válida para ser calculada
+     */
     private char[] eliminarUltimosSimbolos(char[] arr) {
         int n = arr.length;
         while (esSimbolo(arr[n - 1])) {
@@ -1581,6 +1737,9 @@ public class MainActivity extends AppCompatActivity {
         return arrReturn;
     }
 
+    /**
+     * Método que inicializa los botones de la vista, original de la librería
+     */
     private void viewSetup() {
         b1 = findViewById(R.id.button1);
         b2 = findViewById(R.id.button2);
@@ -1636,6 +1795,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Método original de la librería
+     */
     // Remove error message that is already written there.
     private void ifErrorOnOutput() {
         if (out.getText().toString().equals("Error")) {
@@ -1644,6 +1806,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Método original de la librería
+     */
     // Make text small if too many digits.
     private void exceedLength() {
         if (in.getText().toString().length() > 10) {
@@ -1651,6 +1816,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Método que se ejecuta cuando se hace click en un boton de operacion, añade el simbolo a la expresión
+     * @param op es el símbolo a añadir
+     */
     private void operationClicked(String op) {
         if (out.length() != 0) {
             out.setText(out.getText() + op);
@@ -1663,6 +1832,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Método que calcula el resultado de una expresión dada, tiene en cuenta distintos casos dependiendo del tipo de operación
+     * Tiene en cuenta si un número es negativo, le cambia el signo si es necesario y calcula la expresión al completo
+     * @param expression es la propia expresión
+     * @return double con el resultado de la expresión redondeado a 5 cifras decimales
+     */
     private double calculate(String expression) {
         if(expression.contains("^")){
             String partes[] = expression.split("\\^");
@@ -1783,6 +1958,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Método que redondea un double al numero de cifras decimales deseadas
+     * @param value número a redondear
+     * @param places número de cifras decimales
+     * @return double redondeado a places cifras decimales
+     */
     private static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
         Double valor = value;
@@ -1794,6 +1975,11 @@ public class MainActivity extends AppCompatActivity {
         return value;
     }
 
+    /**
+     * Método que detecta si se puede poner pi a continuacion en la cadena
+     * @param cadena es la cadena en cuestion
+     * @return true si se puede poner pi a continuacion en la cadena, falso en caso contrario
+     */
     private static boolean puedePi(String cadena){
 
         if(cadena.isEmpty())
@@ -1807,6 +1993,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Método que detecta si el caracter no es ni un numero ni un punto
+     * @param c es el caracter en cuestion
+     * @return true si el caracter no es ni un numero ni un punto, falso en caso contrario
+     */
     private static boolean NoEsNumeroNiPunto(char c){
         switch (c){
             case '0':
@@ -1837,6 +2028,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Método que devuelve el ultimo numero de la expresion
+     * @param expression es la expresion en cuestion
+     * @return devuelve en string el ultimo numero de la expresion
+     */
     public String ultimoNumero(String expression){
 
         for(int i = expression.length()-1; i>=0; --i){
@@ -1848,6 +2044,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Método que detecta si el ultimo signo de la expresión es un -
+     * @param expression es la expresion en cuestion
+     * @return true si el ultimo signo de la expresión es un -, falso en caso contrario
+     */
     public boolean ultimoSignoMenos(String expression){
 
         for(int i=expression.length()-1; i>=0; --i){
@@ -1861,6 +2062,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Método que detecta si la expresión contiene un simbolo
+     * @param expression es la expresion en cuestion
+     * @return true si detecta que la expresión contiene un simbolo, falso en caso contrario
+     */
     public boolean tieneSimbolo(String expression){
 
         for(int i = expression.length()-1; i>=0; --i){
@@ -1872,6 +2078,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Método que detecta si la expresión contiene un simbolo que no sea menos
+     * @param expression es la expresion en cuestion
+     * @return true si detecta que la expresión contiene un simbolo que no sea -, falso en caso contrario
+     */
     public boolean tieneSimboloQueNoSeaMenos(String expression){
 
         for(int i = expression.length()-1; i>=0; --i){
@@ -1883,6 +2094,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Método que detecta si la expresión no contiene NCR, ^, √ o LOG
+     * @param expression es la expresion en cuestion
+     * @return true si detecta que la expresión contiene dichos simbolos, falso en caso contrario
+     */
     public boolean solo1NCR (String expression){
         if(expression.contains("NCR") || expression.contains("^") || expression.contains("√") || expression.contains("LOG"))
             return false;
@@ -1890,10 +2106,20 @@ public class MainActivity extends AppCompatActivity {
             return true;
     }
 
+    /**
+     * Método que detecta si la expresión contiene paréntesis
+     * @param expression es la expresion en cuestion
+     * @return true si detecta que la expresión contiene paréntesis, falso en caso contrario
+     */
     public boolean contieneParentesis(String expression){
         return (expression.contains("(") || expression.contains("(") ? true : false);
     }
 
+    /**
+     * Método que detecta si los parentesis estan cerrados
+     * @param expression es la expresion en cuestion
+     * @return true si detecta que todos los paréntesis estan cerrados, falso en caso contrario
+     */
     public boolean contieneParejasCerradasDeParentesis(String expression){
         int contIz = 0;
         int contDe = 0;
@@ -1906,6 +2132,11 @@ public class MainActivity extends AppCompatActivity {
         return (contIz == contDe ? true : false);
     }
 
+    /**
+     * Método que detecta si esta el parentesis izq antes que el derecho
+     * @param expression es la expresion en cuestion
+     * @return true si detecta ( antes que ), falso en caso contrario
+     */
     public boolean ParentesisIzAntesDe(String expression){
 
         for(char i : expression.toCharArray()){
@@ -1919,6 +2150,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Método que detecta si hay parentesis vacios
+     * @param expression es la expresion en cuestion
+     * @return true si detecta dos parentesis vacios como (), falso en caso contrario
+     */
     public boolean ParentesisVacios(String expression){
         char anterior= ' ';
         for(char i : expression.toCharArray()){
