@@ -424,35 +424,41 @@ public class MainActivity extends AppCompatActivity {
                 exceedLength();
                 if (in.getText().equals("Invalid Expression")) {
                     in.setText("");
-                }else if(in.getText().toString().equals("")||in.getText().toString().equals("-")){
-                    out.setText(UtilesMatemáticas.raízCuadrada(0)+"");
-                }else{
-                    //try {
-                        Double d = (Double) Double.parseDouble(in.getText().toString());
+                } else if (in.getText().toString().equals("") || in.getText().toString().equals("-")) {
+                    out.setText(UtilesMatemáticas.raízCuadrada(0) + "");
+                } else {
+                    try {
+                        /*Double d = (Double) Double.parseDouble(in.getText().toString());
                         if (d instanceof Double) {
-                            if(d<0){
+                            if (d < 0) {
                                 out.setText("Math Error");
                                 return;
-                            }else{
+                            } else {
                                 out.setText(UtilesMatemáticas.raízCuadrada(d) + "");
                             }
 
 
+                        }*/
+                        if ((Double) Double.parseDouble(out.getText().toString()) instanceof Double) {
+                            if(Double.parseDouble(out.getText().toString()) > 0)
+                                out.setText(UtilesMatemáticas.raízCuadrada(Double.parseDouble(in.getText().toString())) + "");
+                            else
+                                out.setText("Entrada inválida");
                         }
 
-                    //} catch (NumberFormatException e) {
-                       /* if(!esSimbolo(out.getText().charAt(out.getText().toString().length()-1))) {
-                            if(ultimoSignoMenos(out.getText().toString())){
+                    } catch (NumberFormatException e) {
+                        if (!esSimbolo(out.getText().charAt(out.getText().toString().length() - 1))) {
+                            if (ultimoSignoMenos(out.getText().toString())) {
                                 out.setText("Entrada inválida");
-                            }else {
+                            } else {
                                 String ultimo = ultimoNumero(out.getText().toString());
                                 String partes[] = ultimo.split("º");
 
                                 out.setText(partes[0] + UtilesMatemáticas.raízCuadrada(Double.parseDouble(partes[1])) + "");
                                 in.setText("");
                             }
-                        }*/
-                    //}
+                        }
+                    }
                 }
             }
         });
@@ -461,7 +467,7 @@ public class MainActivity extends AppCompatActivity {
         b_cbrt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ifErrorOnOutput();
+                /*ifErrorOnOutput();
                 exceedLength();
                 if (in.getText().equals("Invalid Expression")) {
                     in.setText("");
@@ -477,6 +483,28 @@ public class MainActivity extends AppCompatActivity {
                         }
 
 
+                    }
+                }
+            }*/
+                ifErrorOnOutput();
+                exceedLength();
+                if (in.getText().equals("Invalid Expression")) {
+                    in.setText("");
+                } else if (in.getText().toString().equals("") || in.getText().toString().equals("-")) {
+                    out.setText(UtilesMatemáticas.raízCubica(0)+"");
+                }else {
+                    try {
+                        if ((Double) Double.parseDouble(out.getText().toString()) instanceof Double) {
+                            out.setText(UtilesMatemáticas.raízCubica(Double.parseDouble(in.getText().toString())) + "");
+                        }
+                    } catch (NumberFormatException e) {
+                        if (!esSimbolo(out.getText().charAt(out.getText().toString().length() - 1))) {
+                            String ultimo = ultimoNumero(out.getText().toString());
+                            String partes[] = ultimo.split("º");
+
+                            out.setText(partes[0] + UtilesMatemáticas.raízCubica(Double.parseDouble(partes[1])) + "");
+                            in.setText("");
+                        }
                     }
                 }
             }
@@ -496,16 +524,54 @@ public class MainActivity extends AppCompatActivity {
                     in.setText("");
                 } else if (in.getText().toString().equals("") || in.getText().toString().equals("-")) {
                     out.setText(UtilesMatemáticas.factorial(0) + "");
-                } else {
-                    Integer i = (Integer) Integer.parseInt(in.getText().toString());
-                    if (i instanceof Integer) {
-                        if(i<0){
-                            out.setText("Math Error");
-                            return;
+                }else if(ultimoSignoMenos(out.getText().toString())) {
+                    out.setText("Math Error");
+                }else {
+                    try {
+                        String ultimo = ultimoNumero(out.getText().toString());
+                        String partes[] = ultimo.split("º");
+                        if(partes.length > 1) {
+                            Integer i = (Integer) Integer.parseInt(partes[1]);
+                            if (i instanceof Integer) {
+                                if (i < 0) {
+                                    out.setText("Math Error");
+                                    return;
+                                } else {
+                                    out.setText(partes[0]+UtilesMatemáticas.factorial(i) + "");
+                                }
+                            }
                         }else{
-                            out.setText(UtilesMatemáticas.factorial(i) + "");
-                        }
+                            Integer i = (Integer) Integer.parseInt(in.getText().toString());
+                            if (i instanceof Integer) {
+                                if (i < 0) {
+                                    out.setText("Math Error");
+                                    return;
+                                } else {
+                                    out.setText(UtilesMatemáticas.factorial(i) + "");
+                                }
+                            }
 
+                        }
+                    } catch (NumberFormatException e) {
+                        String ultimo = ultimoNumero(out.getText().toString());
+                        String partes[] = ultimo.split("º");
+                        if(partes.length> 1) {
+                            String decimal[] = partes[1].split("\\.");
+                            if (decimal.length > 1 && Integer.parseInt(decimal[1]) == 0) {
+                                int IntValue = (int) Math.round(Double.parseDouble(partes[1]));
+                                out.setText(partes[0]+UtilesMatemáticas.factorial(IntValue) + "");
+                            }else{
+                                out.setText("Math Error");
+                            }
+                        }else{
+                            String decimal[] = ultimo.split("\\.");
+                            if (decimal.length > 1 && Integer.parseInt(decimal[1]) == 0) {
+                                int IntValue = (int) Integer.parseInt(decimal[0]);
+                                out.setText(UtilesMatemáticas.factorial(IntValue) + "");
+                            }else{
+                                out.setText("Math Error");
+                            }
+                        }
 
                     }
                 }

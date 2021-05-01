@@ -59,7 +59,7 @@ public class UtilesMatemáticas {
     }
 
     public static double raízCubica(double x){
-        return Math.pow(x, invertir(3));
+        return Math.cbrt(x);
     }
 
     public static double raizYdeX(double x, double y){
