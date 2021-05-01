@@ -9,7 +9,7 @@
 
 
     <Button
-        android:id="@+id/button25"
+        android:id="@+id/b_ParenIZ"
         android:layout_width="70dp"
         android:layout_height="45dp"
         android:background="@drawable/boton_cientifica"
@@ -72,7 +72,7 @@
         app:layout_constraintVertical_bias="0.816" />
 
     <Button
-        android:id="@+id/button33"
+        android:id="@+id/b_ln"
         android:layout_width="70dp"
         android:layout_height="45dp"
         android:background="@drawable/boton_cientifica"
@@ -88,7 +88,7 @@
         app:layout_constraintVertical_bias="0.961" />
 
     <Button
-        android:id="@+id/button24"
+        android:id="@+id/b_ParenDE"
         android:layout_width="70dp"
         android:layout_height="45dp"
         android:background="@drawable/boton_cientifica"
@@ -103,7 +103,7 @@
         app:layout_constraintVertical_bias="0.385" />
 
     <Button
-        android:id="@+id/button13"
+        android:id="@+id/b_Atan"
         android:layout_width="70dp"
         android:layout_height="45dp"
         android:background="@drawable/boton_cientifica"
@@ -119,7 +119,7 @@
         app:layout_constraintVertical_bias="0.961" />
 
     <Button
-        android:id="@+id/button17"
+        android:id="@+id/b_xRaizY"
         android:layout_width="70dp"
         android:layout_height="45dp"
         android:background="@drawable/boton_cientifica"
@@ -151,11 +151,11 @@
         app:layout_constraintVertical_bias="0.385" />
 
     <Button
-        android:id="@+id/button12"
+        android:id="@+id/b_logyX"
         android:layout_width="70dp"
         android:layout_height="45dp"
         android:background="@drawable/boton_cientifica"
-        android:text="x*10^y"
+        android:text="LogyX"
         android:textAllCaps="false"
         android:textColor="#ffff"
         android:textSize="28sp"
@@ -183,7 +183,7 @@
         app:layout_constraintVertical_bias="0.53" />
 
     <Button
-        android:id="@+id/button15"
+        android:id="@+id/b_Acos"
         android:layout_width="70dp"
         android:layout_height="45dp"
         android:background="@drawable/boton_cientifica"
@@ -199,7 +199,7 @@
         app:layout_constraintVertical_bias="0.961" />
 
     <Button
-        android:id="@+id/button23"
+        android:id="@+id/b_Asen"
         android:layout_width="70dp"
         android:layout_height="45dp"
         android:background="@drawable/boton_cientifica"
@@ -374,7 +374,7 @@
         app:layout_constraintVertical_bias="0.677" />
 
     <Button
-        android:id="@+id/button31"
+        android:id="@+id/b_xAlaY"
         android:layout_width="70dp"
         android:layout_height="45dp"
         android:background="@drawable/boton_cientifica"

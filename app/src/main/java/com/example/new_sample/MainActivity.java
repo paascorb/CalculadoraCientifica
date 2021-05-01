@@ -1,7 +1,5 @@
 package com.example.new_sample;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.Editable;
@@ -11,7 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.io.UTFDataFormatException;
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -59,6 +58,15 @@ public class MainActivity extends AppCompatActivity {
     private Button b_cos;
     private Button b_sin;
     private Button b_tan;
+    private Button b_ln;
+    private Button b_Atan;
+    private Button b_Acos;
+    private Button b_Asen;
+    private Button b_xAlay;
+    private Button b_xRaizY;
+    private Button b_logyX;
+    private Button b_ParenIZ;
+    private Button b_ParenDe;
 
     private boolean estaNCR=false;
     private int posi=0;
@@ -200,6 +208,30 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        b_ParenIZ.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ifErrorOnOutput();
+                exceedLength();
+                if(in.getText().equals("Invalid Expression")){
+                    in.setText("");
+                }
+                out.setText(out.getText().toString() + "(");
+            }
+        });
+
+        b_ParenDe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ifErrorOnOutput();
+                exceedLength();
+                if(in.getText().equals("Invalid Expression")){
+                    in.setText("");
+                }
+                out.setText(out.getText().toString() + ")");
+            }
+        });
+
         b_pi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -231,17 +263,23 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ifErrorOnOutput();
                 exceedLength();
-                if(in.getText().equals("Invalid Expression")){
+                if(in.getText().equals("Invalid Expression") || !solo1NCR(in.getText().toString())){
+                    in.setText("");
+                } else if(out.getText().toString().equals("Math Error")){
+                    out.setText("");
                     in.setText("");
                 }else if(in.getText().toString().equals("")||in.getText().toString().equals("-")){
                     out.setText(UtilesMatemáticas.diezElevadoX(0.0)+"");
+                }else if(contieneParentesis(out.getText().toString())){
+                    if(contieneParejasCerradasDeParentesis(out.getText().toString()))
+                        out.setText(UtilesMatemáticas.diezElevadoX(calculate(out.getText().toString()))+"");
                 }else{
                     try {
                         if ((Double) Double.parseDouble(out.getText().toString()) instanceof Double) {
                             out.setText(UtilesMatemáticas.diezElevadoX(Double.parseDouble(in.getText().toString())) + "");
                         }
                     } catch (NumberFormatException e) {
-                        if(!esSimbolo(out.getText().charAt(out.getText().toString().length()-1))) {
+                        if(!esSimbolo(out.getText().charAt(out.getText().toString().length()-1)) && !contieneParentesis(out.getText().toString())) {
                             String ultimo = ultimoNumero(out.getText().toString());
                             String partes[] = ultimo.split("º");
 
@@ -258,10 +296,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ifErrorOnOutput();
                 exceedLength();
-                if(in.getText().equals("Invalid Expression")){
+                if(in.getText().equals("Invalid Expression") || !solo1NCR(in.getText().toString())){
+                    in.setText("");
+                } else if(out.getText().toString().equals("Math Error")){
+                    out.setText("");
                     in.setText("");
                 }else if(in.getText().toString().equals("")||in.getText().toString().equals("-")){
                     out.setText("");
+                }else if(contieneParentesis(out.getText().toString())){
+                    if(contieneParejasCerradasDeParentesis(out.getText().toString()))
+                        out.setText(UtilesMatemáticas.log10deX(calculate(out.getText().toString()))+"");
                 }else{
                     try {
                         if ((Double) Double.parseDouble(out.getText().toString()) instanceof Double) {
@@ -280,15 +324,54 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        b_ln.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ifErrorOnOutput();
+                exceedLength();
+                if(in.getText().equals("Invalid Expression") || !solo1NCR(in.getText().toString())){
+                    in.setText("");
+                } else if(out.getText().toString().equals("Math Error")){
+                    out.setText("");
+                    in.setText("");
+                }else if(in.getText().toString().equals("")||in.getText().toString().equals("-")){
+                    out.setText("");
+                }else if(contieneParentesis(out.getText().toString())){
+                    if(contieneParejasCerradasDeParentesis(out.getText().toString()))
+                        out.setText(UtilesMatemáticas.lnDeX(calculate(out.getText().toString()))+"");
+                }else{
+                    try {
+                        if ((Double) Double.parseDouble(out.getText().toString()) instanceof Double) {
+                            out.setText(UtilesMatemáticas.lnDeX(Double.parseDouble(in.getText().toString())) + "");
+                        }
+                    } catch (NumberFormatException e) {
+                        if(!esSimbolo(out.getText().charAt(out.getText().toString().length()-1))) {
+                            String ultimo = ultimoNumero(out.getText().toString());
+                            String partes[] = ultimo.split("º");
+
+                            out.setText(partes[0] + UtilesMatemáticas.lnDeX(Double.parseDouble(partes[1])) + "");
+                            in.setText("");
+                        }
+                    }
+                }
+            }
+        });
+
         b_cuadrado.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ifErrorOnOutput();
                 exceedLength();
-                if(in.getText().equals("Invalid Expression")){
+                if(in.getText().equals("Invalid Expression") || !solo1NCR(in.getText().toString())){
+                    in.setText("");
+                } else if(out.getText().toString().equals("Math Error")){
+                    out.setText("");
                     in.setText("");
                 }else if(in.getText().toString().equals("")||in.getText().toString().equals("-")){
                     out.setText(UtilesMatemáticas.cuadrado(0)+"");
+                }else if(contieneParentesis(out.getText().toString())){
+                    if(contieneParejasCerradasDeParentesis(out.getText().toString()))
+                        out.setText(UtilesMatemáticas.cuadrado(calculate(out.getText().toString()))+"");
                 }else{
                     try {
                         if ((Double) Double.parseDouble(out.getText().toString()) instanceof Double) {
@@ -312,10 +395,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ifErrorOnOutput();
                 exceedLength();
-                if(in.getText().equals("Invalid Expression")){
+                if(in.getText().equals("Invalid Expression") || !solo1NCR(in.getText().toString())){
+                    in.setText("");
+                } else if(out.getText().toString().equals("Math Error")){
+                    out.setText("");
                     in.setText("");
                 }else if(in.getText().toString().equals("")||in.getText().toString().equals("-")){
                     out.setText(UtilesMatemáticas.cubo(0)+"");
+                }else if(contieneParentesis(out.getText().toString())){
+                    if(contieneParejasCerradasDeParentesis(out.getText().toString()))
+                        out.setText(UtilesMatemáticas.cubo(calculate(out.getText().toString()))+"");
                 }else{
                     try {
                         if ((Double) Double.parseDouble(out.getText().toString()) instanceof Double) {
@@ -339,10 +428,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ifErrorOnOutput();
                 exceedLength();
-                if(in.getText().equals("Invalid Expression")){
+                if(in.getText().equals("Invalid Expression") || !solo1NCR(in.getText().toString())){
+                    in.setText("");
+                } else if(out.getText().toString().equals("Math Error")){
+                    out.setText("");
                     in.setText("");
                 }else if(in.getText().toString().equals("")||in.getText().toString().equals("-")){
                     out.setText(UtilesMatemáticas.DosAlaX(0)+"");
+                }else if(contieneParentesis(out.getText().toString())){
+                    if(contieneParejasCerradasDeParentesis(out.getText().toString()))
+                        out.setText(UtilesMatemáticas.DosAlaX(calculate(out.getText().toString()))+"");
                 }else{
                     try {
                         if ((Double) Double.parseDouble(out.getText().toString()) instanceof Double) {
@@ -366,10 +461,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ifErrorOnOutput();
                 exceedLength();
-                if(in.getText().equals("Invalid Expression")){
+                if(in.getText().equals("Invalid Expression") || !solo1NCR(in.getText().toString())){
+                    in.setText("");
+                } else if(out.getText().toString().equals("Math Error")){
+                    out.setText("");
                     in.setText("");
                 }else if(in.getText().toString().equals("")||in.getText().toString().equals("-")){
                     out.setText(UtilesMatemáticas.eElevadoX(0)+"");
+                }else if(contieneParentesis(out.getText().toString())){
+                    if(contieneParejasCerradasDeParentesis(out.getText().toString()))
+                        out.setText(UtilesMatemáticas.eElevadoX(calculate(out.getText().toString()))+"");
                 }else{
                     try {
                         if ((Double) Double.parseDouble(out.getText().toString()) instanceof Double) {
@@ -391,14 +492,21 @@ public class MainActivity extends AppCompatActivity {
         b_inv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 ifErrorOnOutput();
                 exceedLength();
-                if (in.getText().equals("Invalid Expression")) {
+                if (in.getText().equals("Invalid Expression") || !solo1NCR(in.getText().toString())) {
+                    in.setText("");
+                } else if(out.getText().toString().equals("Math Error")){
+                    out.setText("");
                     in.setText("");
                 } else if (in.getText().toString().equals("")||in.getText().toString().equals("-")) {
                     out.setText("");
                 } else if (in.getText().toString().equals("0")){
                     out.setText("Indeterminación");
+                }else if(contieneParentesis(out.getText().toString())){
+                    if(contieneParejasCerradasDeParentesis(out.getText().toString()))
+                        out.setText(UtilesMatemáticas.invertir(calculate(out.getText().toString()))+"");
                 }else{
                     try {
                         if ((Double) Double.parseDouble(out.getText().toString()) instanceof Double) {
@@ -422,10 +530,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ifErrorOnOutput();
                 exceedLength();
-                if (in.getText().equals("Invalid Expression")) {
+                if (in.getText().equals("Invalid Expression") || !solo1NCR(in.getText().toString())) {
                     in.setText("");
-                } else if (in.getText().toString().equals("") || in.getText().toString().equals("-")) {
+                }  else if(out.getText().toString().equals("Math Error")){
+                    out.setText("");
+                    in.setText("");
+                }else if (in.getText().toString().equals("") || in.getText().toString().equals("-")) {
                     out.setText(UtilesMatemáticas.raízCuadrada(0) + "");
+                }else if(contieneParentesis(out.getText().toString())){
+                    if(contieneParejasCerradasDeParentesis(out.getText().toString()))
+                        out.setText(UtilesMatemáticas.raízCuadrada(calculate(out.getText().toString()))+"");
                 } else {
                     try {
                         /*Double d = (Double) Double.parseDouble(in.getText().toString());
@@ -488,10 +602,16 @@ public class MainActivity extends AppCompatActivity {
             }*/
                 ifErrorOnOutput();
                 exceedLength();
-                if (in.getText().equals("Invalid Expression")) {
+                if (in.getText().equals("Invalid Expression") || !solo1NCR(in.getText().toString())) {
+                    in.setText("");
+                } else if(out.getText().toString().equals("Math Error")){
+                    out.setText("");
                     in.setText("");
                 } else if (in.getText().toString().equals("") || in.getText().toString().equals("-")) {
                     out.setText(UtilesMatemáticas.raízCubica(0)+"");
+                }else if(contieneParentesis(out.getText().toString())){
+                    if(contieneParejasCerradasDeParentesis(out.getText().toString()))
+                        out.setText(UtilesMatemáticas.raízCubica(calculate(out.getText().toString()))+"");
                 }else {
                     try {
                         if ((Double) Double.parseDouble(out.getText().toString()) instanceof Double) {
@@ -520,12 +640,23 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ifErrorOnOutput();
                 exceedLength();
-                if (in.getText().equals("Invalid Expression")) {
+                if (in.getText().equals("Invalid Expression") || !solo1NCR(in.getText().toString())) {
                     in.setText("");
-                } else if (in.getText().toString().equals("") || in.getText().toString().equals("-")) {
+                }else if(out.getText().toString().equals("Math Error")){
+                    out.setText("");
+                    in.setText("");
+                }else if (in.getText().toString().equals("") || in.getText().toString().equals("-")) {
                     out.setText(UtilesMatemáticas.factorial(0) + "");
                 }else if(ultimoSignoMenos(out.getText().toString())) {
                     out.setText("Math Error");
+                }else if(contieneParentesis(out.getText().toString())){
+                    if(contieneParejasCerradasDeParentesis(out.getText().toString())) {
+                        Double resultado = calculate(out.getText().toString());
+                        if(!resultado.isNaN()) {
+                            String partes[] = resultado.toString().split("\\.");
+                            out.setText(UtilesMatemáticas.factorial(Integer.parseInt(partes[0] + "")) + "");
+                        }
+                    }
                 }else {
                     try {
                         String ultimo = ultimoNumero(out.getText().toString());
@@ -565,7 +696,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }else{
                             String decimal[] = ultimo.split("\\.");
-                            if (decimal.length > 1 && Integer.parseInt(decimal[1]) == 0) {
+                            if (decimal.length > 1 && Long.parseLong(decimal[1]) == 0) {
                                 int IntValue = (int) Integer.parseInt(decimal[0]);
                                 out.setText(UtilesMatemáticas.factorial(IntValue) + "");
                             }else{
@@ -585,18 +716,47 @@ public class MainActivity extends AppCompatActivity {
                 ifErrorOnOutput();
                 exceedLength();
                 String cadena=out.getText().toString();
-                out.setText(cadena+"NCR");
-
-                //int n=NCRPrimero();
-                //int m=NCRSegundo();
-                //out.setText(UtilesMatemáticas.ncr(n,m));
-
+                if(contieneParentesis(out.getText().toString())) {
+                }else if(solo1NCR(out.getText().toString()) && !tieneSimbolo(cadena))
+                    out.setText(cadena+"NCR");
             }
         });
 
+        b_xAlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ifErrorOnOutput();
+                exceedLength();
+                String cadena=out.getText().toString();
+                if(contieneParentesis(out.getText().toString())) {
+                }if(solo1NCR(cadena) && !tieneSimbolo(cadena))
+                    out.setText(cadena+"^");
+            }
+        });
 
+        b_xRaizY.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ifErrorOnOutput();
+                exceedLength();
+                String cadena=out.getText().toString();
+                if(contieneParentesis(out.getText().toString())) {
+                }if(solo1NCR(cadena) && !tieneSimboloQueNoSeaMenos(cadena))
+                    out.setText(cadena+"√");
+            }
+        });
 
-
+        b_logyX.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ifErrorOnOutput();
+                exceedLength();
+                String cadena=out.getText().toString();
+                if(contieneParentesis(out.getText().toString())) {
+                }if(solo1NCR(cadena) && !tieneSimboloQueNoSeaMenos(cadena))
+                    out.setText(cadena+"LOG");
+            }
+        });
 
         b_cos.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -606,10 +766,16 @@ public class MainActivity extends AppCompatActivity {
                 Double coseno;
                 DecimalFormat df = new DecimalFormat("#");
                 df.setMaximumFractionDigits(8);
-                if(in.getText().equals("Invalid Expression")){
+                if(in.getText().equals("Invalid Expression") || !solo1NCR(in.getText().toString())){
+                    in.setText("");
+                } else if(out.getText().toString().equals("Math Error")){
+                    out.setText("");
                     in.setText("");
                 }else if(in.getText().toString().equals("")||in.getText().toString().equals("-")){
                     out.setText(UtilesMatemáticas.coseno(0)+"");
+                }else if(contieneParentesis(out.getText().toString())){
+                    if(contieneParejasCerradasDeParentesis(out.getText().toString()))
+                        out.setText(UtilesMatemáticas.coseno(calculate(out.getText().toString()))+"");
                 }else{
                     try {
                         if ((Double) Double.parseDouble(out.getText().toString()) instanceof Double) {
@@ -630,6 +796,44 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        b_Acos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ifErrorOnOutput();
+                exceedLength();
+                Double coseno;
+                DecimalFormat df = new DecimalFormat("#");
+                df.setMaximumFractionDigits(8);
+                if(in.getText().equals("Invalid Expression") || !solo1NCR(in.getText().toString())){
+                    in.setText("");
+                } else if(out.getText().toString().equals("Math Error")){
+                    out.setText("");
+                    in.setText("");
+                }else if(in.getText().toString().equals("")||in.getText().toString().equals("-")){
+                    out.setText(UtilesMatemáticas.ArcCoseno(0)+"");
+                }else if(contieneParentesis(out.getText().toString())){
+                    if(contieneParejasCerradasDeParentesis(out.getText().toString()))
+                        out.setText(UtilesMatemáticas.ArcCoseno(calculate(out.getText().toString()))+"");
+                }else{
+                    try {
+                        if ((Double) Double.parseDouble(out.getText().toString()) instanceof Double) {
+                            coseno = Double.parseDouble(in.getText().toString());
+                            out.setText(df.format(UtilesMatemáticas.ArcCoseno(coseno)) + "");
+                        }
+                    } catch (NumberFormatException e) {
+                        if(!esSimbolo(out.getText().charAt(out.getText().toString().length()-1))) {
+                            String ultimo = ultimoNumero(out.getText().toString());
+                            String partes[] = ultimo.split("º");
+
+                            coseno = Double.parseDouble(partes[1]);
+                            out.setText(partes[0] + df.format(UtilesMatemáticas.ArcCoseno(coseno)) + "");
+                            in.setText("");
+                        }
+                    }
+                }
+            }
+        });
+
         b_sin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -638,10 +842,16 @@ public class MainActivity extends AppCompatActivity {
                 Double seno;
                 DecimalFormat df = new DecimalFormat("#");
                 df.setMaximumFractionDigits(8);
-                if(in.getText().equals("Invalid Expression")){
+                if(in.getText().equals("Invalid Expression") || !solo1NCR(in.getText().toString())){
+                    in.setText("");
+                } else if(out.getText().toString().equals("Math Error")){
+                    out.setText("");
                     in.setText("");
                 }else if(in.getText().toString().equals("")||in.getText().toString().equals("-")){
                     out.setText(UtilesMatemáticas.seno(0)+"");
+                }else if(contieneParentesis(out.getText().toString())){
+                    if(contieneParejasCerradasDeParentesis(out.getText().toString()))
+                        out.setText(UtilesMatemáticas.seno(calculate(out.getText().toString()))+"");
                 }else{
                     try {
                         if ((Double) Double.parseDouble(out.getText().toString()) instanceof Double) {
@@ -662,6 +872,43 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        b_Asen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ifErrorOnOutput();
+                exceedLength();
+                Double seno;
+                DecimalFormat df = new DecimalFormat("#");
+                df.setMaximumFractionDigits(8);
+                if(in.getText().equals("Invalid Expression") || !solo1NCR(in.getText().toString())){
+                    in.setText("");
+                } else if(out.getText().toString().equals("Math Error")){
+                    out.setText("");
+                    in.setText("");
+                }else if(in.getText().toString().equals("")||in.getText().toString().equals("-")){
+                    out.setText(UtilesMatemáticas.ArcSeno(0)+"");
+                }else if(contieneParentesis(out.getText().toString())){
+                    if(contieneParejasCerradasDeParentesis(out.getText().toString()))
+                        out.setText(UtilesMatemáticas.ArcSeno(calculate(out.getText().toString()))+"");
+                }else{
+                    try {
+                        if ((Double) Double.parseDouble(out.getText().toString()) instanceof Double) {
+                            seno = Double.parseDouble(in.getText().toString());
+                            out.setText(df.format(UtilesMatemáticas.ArcSeno(seno)) + "");
+                        }
+                    } catch (NumberFormatException e) {
+                        if(!esSimbolo(out.getText().charAt(out.getText().toString().length()-1))) {
+                            String ultimo = ultimoNumero(out.getText().toString());
+                            String partes[] = ultimo.split("º");
+
+                            seno = Double.parseDouble(partes[1]);
+                            out.setText(partes[0] + df.format(UtilesMatemáticas.ArcSeno(seno)) + "");
+                            in.setText("");
+                        }
+                    }
+                }
+            }
+        });
 
 
 
@@ -673,10 +920,16 @@ public class MainActivity extends AppCompatActivity {
                 Double tangente;
                 DecimalFormat df = new DecimalFormat("#");
                 df.setMaximumFractionDigits(8);
-                if(in.getText().equals("Invalid Expression")){
+                if(in.getText().equals("Invalid Expression") || !solo1NCR(in.getText().toString())){
+                    in.setText("");
+                } else if(out.getText().toString().equals("Math Error")){
+                    out.setText("");
                     in.setText("");
                 }else if(in.getText().toString().equals("")||in.getText().toString().equals("-")){
                     out.setText(UtilesMatemáticas.tangente(0)+"");
+                }else if(contieneParentesis(out.getText().toString())){
+                    if(contieneParejasCerradasDeParentesis(out.getText().toString()))
+                        out.setText(UtilesMatemáticas.tangente(calculate(out.getText().toString()))+"");
                 }else{
                     //try {
                     Double d=(Double) Double.parseDouble(in.getText().toString());
@@ -706,6 +959,53 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        b_Atan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ifErrorOnOutput();
+                exceedLength();
+                Double tangente;
+                DecimalFormat df = new DecimalFormat("#");
+                df.setMaximumFractionDigits(8);
+                if(in.getText().equals("Invalid Expression") || !solo1NCR(in.getText().toString())){
+                    in.setText("");
+                } else if(out.getText().toString().equals("Math Error")){
+                    out.setText("");
+                    in.setText("");
+                }else if(in.getText().toString().equals("")||in.getText().toString().equals("-")){
+                    out.setText(UtilesMatemáticas.ArcTangente(0)+"");
+                }else if(contieneParentesis(out.getText().toString())){
+                    if(contieneParejasCerradasDeParentesis(out.getText().toString()))
+                        out.setText(UtilesMatemáticas.ArcTangente(calculate(out.getText().toString()))+"");
+                }else{
+                    //try {
+                    Double d=(Double) Double.parseDouble(in.getText().toString());
+                    if (d instanceof Double) {
+                        for(int n=1;n<400;n++) {
+                            if (d == (90 * n)) {
+                                out.setText("Math Error");
+                                return;
+                            }
+                        }
+                        tangente = Double.parseDouble(in.getText().toString());
+                        out.setText(df.format(UtilesMatemáticas.ArcTangente(tangente)) + "");
+                    }
+                    // }
+                    /*
+                    catch (NumberFormatException e) {
+                        if(!esSimbolo(out.getText().charAt(out.getText().toString().length()-1))) {
+                            String ultimo = ultimoNumero(out.getText().toString());
+                            String partes[] = ultimo.split("º");
+
+                            tangente = Double.parseDouble(partes[1]);
+                            out.setText(partes[0] + df.format(UtilesMatemáticas.tangente(tangente)) + "");
+                            in.setText("");
+                        }
+                    }*/
+                }
+            }
+        });
+
 
 
 
@@ -714,7 +1014,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 exceedLength();
-                if(in.getText().equals("Invalid Expression")){
+                if(in.getText().equals("Invalid Expression") || !solo1NCR(in.getText().toString())){
                     in.setText("");
                 }
                 if((!out.getText().toString().isEmpty()) && (puedeDecimal( out.getText().toString())) ){
@@ -745,8 +1045,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(in.getText().equals("Invalid Expression")){
                     in.setText("");
-                }
-                if((!out.getText().toString().isEmpty()) && (permiteSimbolo(out.getText().toString(),"+"))){
+                }else if(!solo1NCR(out.getText().toString())){
+                    in.setText("Entrada inválida");
+                } else if((!out.getText().toString().isEmpty()) && (permiteSimbolo(out.getText().toString(),"+"))){
                     operationClicked("+");
                 }else{
                     out.setText(out.getText().toString() + "");
@@ -762,6 +1063,8 @@ public class MainActivity extends AppCompatActivity {
                     in.setText("");
                 }else if(out.getText().toString().isEmpty()){
                     out.setText("-");
+                }else if(!solo1NCR(out.getText().toString())){
+                    in.setText("Entrada inválida");
                 }
                 else if(out.getText().toString().equals("-")){
                     out.setText(out.getText().toString() + "");
@@ -787,8 +1090,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(in.getText().equals("Invalid Expression")){
                     in.setText("");
-                }
-                if((!out.getText().toString().isEmpty()) && (permiteSimbolo(out.getText().toString(),"*"))){
+                }else if(!solo1NCR(out.getText().toString())){
+                    in.setText("Entrada inválida");
+                }else if((!out.getText().toString().isEmpty()) && (permiteSimbolo(out.getText().toString(),"*"))){
                     operationClicked("*");
                 }else{
                     out.setText(out.getText().toString() + "");
@@ -801,8 +1105,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(in.getText().equals("Invalid Expression")){
                     in.setText("");
-                }
-                if((!out.getText().toString().isEmpty()) && (permiteSimbolo(out.getText().toString(),"/"))){
+                }else if(!solo1NCR(out.getText().toString())){
+                    in.setText("Entrada inválida");
+                }else if((!out.getText().toString().isEmpty()) && (permiteSimbolo(out.getText().toString(),"/"))){
                     operationClicked("/");
                 }else{
                     out.setText(out.getText().toString() + "");
@@ -816,8 +1121,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(in.getText().equals("Invalid Expression")){
                     in.setText("");
-                }
-                if (!out.getText().toString().isEmpty() || !in.getText().toString().isEmpty()) {
+                }else if(!solo1NCR(out.getText().toString())){
+                    in.setText("Entrada inválida");
+                } else if (!out.getText().toString().isEmpty() || !in.getText().toString().isEmpty()) {
                     String s = in.getText().toString();
                     char arr[] = s.toCharArray();
                     if (arr[0] == '-')
@@ -835,47 +1141,33 @@ public class MainActivity extends AppCompatActivity {
                 if (out.length() != 0) {
                     expression = out.getText().toString();
                 }
+                if(expression.equals("Math Error")){
+                    out.setText("");
+                    in.setText("");
+                }
                 in.setText("");
                 if (expression.length() == 0)
                     expression = "0.0";
                 try {
-                    /**
-                     * Probando el usar NCR en el boton =
-                     */
-                    if(estaNCR==true){
-                        estaNCR=false;
-                    }
-                    System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-----HOLA");
-                    int i=BuscarNCR(expression.toCharArray());
-                    System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+estaNCR);
-                    if(estaNCR==true){
-                        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+expression);
 
-                        /*int n=NCRPrimero();
-                        int m=NCRSegundo();
-
-                        if(n<m||n<0||m<0){
-                            out.setText("Math Error");
-                        }else{
-                            out.setText(UtilesMatemáticas.ncr(n,m));
-                        }
-                        */
+                    if(expression.contains("NCR")){
                         int resultado=NCR();
                         if(resultado==0){
                             out.setText("Math Error");
                             return;
                         }else{
-                            System.out.println("@@@@@@@@@@@@@@@@@@@@@@@ RESULTADO FINAL"+resultado);
                             out.setText(resultado+"");
                             return;
                         }
-
                     }else {
-                        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@ NO NCR"+expression);
                         result = calculate(expression);
-                        out.setText(result + "");
-                        primeraVez = false;
-                        aux = result;
+                        if(result.isNaN()){
+                            out.setText("Math Error");
+                        }else {
+                            out.setText(result + "");
+                            primeraVez = false;
+                            aux = result;
+                        }
                     }
                 } catch (Exception e) {
                     try {
@@ -910,7 +1202,13 @@ public class MainActivity extends AppCompatActivity {
                 if(in.getText().equals("Invalid Expression")){
                     in.setText("");
                 }
-                if ((out.getText().length() > 0)) {
+                if(out.getText().toString().contains("NCR")){
+                    in.setText(in.getText().toString().replace("NCR", ""));
+                    out.setText(in.getText().toString().replace("NCR", ""));
+                }else if(out.getText().toString().contains("LOG")){
+                    in.setText(in.getText().toString().replace("LOG", ""));
+                    out.setText(in.getText().toString().replace("LOG", ""));
+                }else if ((out.getText().length() > 0)) {
                     if (out.getText().length() == 1) {
                         out.setText("");
                     } else {
@@ -936,7 +1234,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 if (out.getText().toString().length() > 0) {
-                    double resultadoParcial = 0;
+                    Double resultadoParcial = 0.0;
                     char[] t2CharArray = out.getText().toString().toCharArray();
                     char[] t2CharArrayCopia;
                     int numSimbolos = getNumSimbolos(t2CharArray);
@@ -952,10 +1250,34 @@ public class MainActivity extends AppCompatActivity {
                                 t2CharArrayCopia = eliminarUltimosSimbolos(t2CharArray);
                             }
                             resultadoParcial = calculate(charArrayToString(t2CharArrayCopia));
-                            in.setText(resultadoParcial + "");
+                            if(resultadoParcial.isNaN())
+                                in.setText("Math Error");
+                            else
+                                in.setText(resultadoParcial + "");
                         }
 
                     }
+                }
+            }
+        });
+
+        out.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (in.getText().toString().equals("NaN")){
+                    in.setText("Math Error");
+                    out.setText("Math Error");
                 }
             }
         });
@@ -1066,7 +1388,6 @@ public class MainActivity extends AppCompatActivity {
                 }
         return 0;
             }
-
 
             private int NCR(){
                 ArrayList entrada1=new ArrayList();
@@ -1297,9 +1618,18 @@ public class MainActivity extends AppCompatActivity {
         b_cbrt = findViewById(R.id.b_cbrt);
         b_cos = findViewById(R.id.b_cos);
         b_sin = findViewById(R.id.b_sin);
-        b_tan= findViewById(R.id.b_tan);
-        b_factorial=findViewById(R.id.b_factorial);
-        b_ncr=findViewById(R.id.b_ncr);
+        b_tan = findViewById(R.id.b_tan);
+        b_factorial = findViewById(R.id.b_factorial);
+        b_ncr = findViewById(R.id.b_ncr);
+        b_ln = findViewById(R.id.b_ln);
+        b_Atan = findViewById(R.id.b_Atan);
+        b_Acos = findViewById(R.id.b_Acos);
+        b_Asen = findViewById(R.id.b_Asen);
+        b_xAlay = findViewById(R.id.b_xAlaY);
+        b_xRaizY = findViewById(R.id.b_xRaizY);
+        b_logyX = findViewById(R.id.b_logyX);
+        b_ParenIZ = findViewById(R.id.b_ParenIZ);
+        b_ParenDe = findViewById(R.id.b_ParenDE);
 
         in = findViewById(R.id.input);
         out = findViewById(R.id.output);
@@ -1334,102 +1664,122 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private double calculate(String expression) {
-        String op1String = "";
-        String op2String = "";
-        double op1 = 0;
-        double op2 = 0;
+        if(expression.contains("^")){
+            String partes[] = expression.split("\\^");
+            return UtilesMatemáticas.XelevadoY(Double.parseDouble(partes[0]),Double.parseDouble(partes[1]));
+        }else if(expression.contains("√")) {
+            String partes[] = expression.split("√");
+            return UtilesMatemáticas.raizYdeX(Double.parseDouble(partes[1]),Double.parseDouble(partes[0]));
+        }else if(expression.contains("LOG")){
+            String partes[] = expression.split("LOG");
+            return UtilesMatemáticas.logydeX(Double.parseDouble(partes[0]),Double.parseDouble(partes[1]));
+        }else if(expression.contains("(") || expression.contains(")")){
+            if(expression.contains("(") && expression.contains(")")){
+                if(ParentesisIzAntesDe(expression) && contieneParejasCerradasDeParentesis(expression) && !ParentesisVacios(expression))
+                    return UtilesMatemáticas.parentesis(expression);
+                else
+                    return Double.NaN;
+            }else{
+                return Double.NaN;
+            }
+        } else{
+            String op1String = "";
+            String op2String = "";
+            double op1 = 0;
+            double op2 = 0;
 
-        char simbol = '+';
-        boolean neg = false;
+            char simbol = '+';
+            boolean neg = false;
 
-        int position = 0;
-        char arr[] = expression.toCharArray();
+            int position = 0;
+            char arr[] = expression.toCharArray();
 
-        boolean primeraVez = true;
-        boolean cambiarSigno = false;
+            boolean primeraVez = true;
+            boolean cambiarSigno = false;
 
-        if (arr[0] == '-')
-            neg = true;
+            if (arr[0] == '-')
+                neg = true;
 
-        while ((arr[position] != '+' && arr[position] != '-' && arr[position] != '*' && arr[position] != '/') || primeraVez) {
-            op1String += arr[position];
-            position++;
-            primeraVez = false;
-        }
-        simbol = arr[position];
-        if (arr[position + 1] == '-') {
-            cambiarSigno = true;
-            position++;
-        }
+            while ((arr[position] != '+' && arr[position] != '-' && arr[position] != '*' && arr[position] != '/') || primeraVez) {
+                op1String += arr[position];
+                position++;
+                primeraVez = false;
+            }
+            simbol = arr[position];
+            if (arr[position + 1] == '-') {
+                cambiarSigno = true;
+                position++;
+            }
 
-        for (int i = position + 1; i < arr.length; i++) {
-            if (arr[i] != '+' && arr[i] != '-' && arr[i] != '*' && arr[i] != '/' && arr[position] != 'π') {
-                op2String += arr[i];
-            } else {
-                op1 = Double.valueOf(op1String);
-                op2 = Double.valueOf(op2String);
-                if (cambiarSigno) {
-                    op2 = op2 * (-1);
-                    cambiarSigno = false;
+            for (int i = position + 1; i < arr.length; i++) {
+                if (arr[i] != '+' && arr[i] != '-' && arr[i] != '*' && arr[i] != '/' && arr[position] != 'π') {
+                    op2String += arr[i];
+                } else {
+                    op1 = Double.valueOf(op1String);
+                    op2 = Double.valueOf(op2String);
+                    if (cambiarSigno) {
+                        op2 = op2 * (-1);
+                        cambiarSigno = false;
+                    }
+
+                    switch (simbol) {
+                        case '+': {
+                            op1 += op2;
+                            break;
+                        }
+                        case '-': {
+                            op1 -= op2;
+                            break;
+                        }
+                        case '*': {
+                            op1 = op1 * op2;
+                            break;
+                        }
+                        case '/': {
+                            op1 = op1 / op2;
+                            break;
+                        }
+                    }
+                    simbol = arr[i];
+                    if (arr[i + 1] == '-') {
+                        cambiarSigno = true;
+                        i++;
+                    }
+                    position = i;
+                    op2String = "";
+                    op1String = String.valueOf(op1);
+
+                }
+            }
+
+            op1 = Double.valueOf(op1String);
+            op2 = Double.valueOf(op2String);
+
+            if (cambiarSigno) {
+                op2 = op2 * (-1);
+                cambiarSigno = false;
+            }
+            switch (simbol) {
+                case '+': {
+                    op1 += op2;
+                    break;
+                }
+                case '-': {
+                    op1 -= op2;
+                    break;
+                }
+                case '*': {
+                    op1 = op1 * op2;
+                    break;
+                }
+                case '/': {
+                    op1 = op1 / op2;
+                    break;
                 }
 
-                switch (simbol) {
-                    case '+': {
-                        op1 += op2;
-                        break;
-                    }
-                    case '-': {
-                        op1 -= op2;
-                        break;
-                    }
-                    case '*': {
-                        op1 = op1 * op2;
-                        break;
-                    }
-                    case '/': {
-                        op1 = op1 / op2;
-                        break;
-                    }
-                }
-                simbol = arr[i];
-                if (arr[i + 1] == '-') {
-                    cambiarSigno = true;
-                    i++;
-                }
-                position = i;
-                op2String = "";
-                op1String = String.valueOf(op1);
-
             }
+            return round(op1, 5);
         }
-
-        op1 = Double.valueOf(op1String);
-        op2 = Double.valueOf(op2String);
-
-        if (cambiarSigno) {
-            op2 = op2 * (-1);
-            cambiarSigno = false;
-        }
-        switch (simbol) {
-            case '+': {
-                op1 += op2;
-                break;
-            }
-            case '-': {
-                op1 -= op2;
-                break;
-            }
-            case '*': {
-                op1 = op1 * op2;
-                break;
-            }
-            case '/': {
-                op1 = op1 / op2;
-                break;
-            }
-
-        }
-        return round(op1,5);
     }
 
 
@@ -1509,6 +1859,74 @@ public class MainActivity extends AppCompatActivity {
 
         return false;
 
+    }
+
+    public boolean tieneSimbolo(String expression){
+
+        for(int i = expression.length()-1; i>=0; --i){
+            if(NoEsNumeroNiPunto(expression.charAt(i))){
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+    public boolean tieneSimboloQueNoSeaMenos(String expression){
+
+        for(int i = expression.length()-1; i>=0; --i){
+            if(NoEsNumeroNiPunto(expression.charAt(i)) && expression.charAt(i) != '-' ){
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+    public boolean solo1NCR (String expression){
+        if(expression.contains("NCR") || expression.contains("^") || expression.contains("√") || expression.contains("LOG"))
+            return false;
+        else
+            return true;
+    }
+
+    public boolean contieneParentesis(String expression){
+        return (expression.contains("(") || expression.contains("(") ? true : false);
+    }
+
+    public boolean contieneParejasCerradasDeParentesis(String expression){
+        int contIz = 0;
+        int contDe = 0;
+        for(char i : expression.toCharArray()){
+            if(i == '(')
+                ++contIz;
+            if(i == ')')
+                ++contDe;
+        }
+        return (contIz == contDe ? true : false);
+    }
+
+    public boolean ParentesisIzAntesDe(String expression){
+
+        for(char i : expression.toCharArray()){
+            if(i == ')')
+                return false;
+            else if (i == '(')
+                return true;
+        }
+
+        return true;
+
+    }
+
+    public boolean ParentesisVacios(String expression){
+        char anterior= ' ';
+        for(char i : expression.toCharArray()){
+            if(anterior == '(' && i==')')
+                return true;
+            anterior = i;
+        }
+        return false;
     }
 
 

@@ -73,6 +73,9 @@ public class UtilesMatemáticas {
     public static double log10deX(double x){
         return Math.log10(x);
     }
+    public static double logydeX(double y,double x){
+        return (Math.log10(x) / Math.log10(y));
+    }
 
     public static double seno(double x){
         return Math.sin(Math.toRadians(x));
