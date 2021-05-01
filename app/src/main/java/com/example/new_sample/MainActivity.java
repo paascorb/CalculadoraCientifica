@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.io.UTFDataFormatException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -58,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
     private Button b_cos;
     private Button b_sin;
     private Button b_tan;
+
+    private boolean estaNCR=false;
+    private int posi=0;
 
     private TextView in;
     private TextView out;
@@ -516,6 +520,7 @@ public class MainActivity extends AppCompatActivity {
                 exceedLength();
                 String cadena=out.getText().toString();
                 out.setText(cadena+"NCR");
+
                 //int n=NCRPrimero();
                 //int m=NCRSegundo();
                 //out.setText(UtilesMatemáticas.ncr(n,m));
@@ -771,12 +776,36 @@ public class MainActivity extends AppCompatActivity {
                     /**
                      * Probando el usar NCR en el boton =
                      */
-                    if(BuscarNCR(expression.toCharArray())>=0){
-                        int n=NCRPrimero();
-                        int m=NCRSegundo();
-                        out.setText(UtilesMatemáticas.ncr(n,m));
-                    }else {
+                    if(estaNCR==true){
+                        estaNCR=false;
+                    }
+                    System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-----HOLA");
+                    int i=BuscarNCR(expression.toCharArray());
+                    System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+estaNCR);
+                    if(estaNCR==true){
+                        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+expression);
 
+                        /*int n=NCRPrimero();
+                        int m=NCRSegundo();
+
+                        if(n<m||n<0||m<0){
+                            out.setText("Math Error");
+                        }else{
+                            out.setText(UtilesMatemáticas.ncr(n,m));
+                        }
+                        */
+                        int resultado=NCR();
+                        if(resultado==0){
+                            out.setText("Math Error");
+                            return;
+                        }else{
+                            System.out.println("@@@@@@@@@@@@@@@@@@@@@@@ RESULTADO FINAL"+resultado);
+                            out.setText(resultado+"");
+                            return;
+                        }
+
+                    }else {
+                        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@ NO NCR"+expression);
                         result = calculate(expression);
                         out.setText(result + "");
                         primeraVez = false;
@@ -876,7 +905,12 @@ public class MainActivity extends AppCompatActivity {
             out.setText(UtilesMatemáticas.ncr(0,0) + "");
         } else {
                     //out.setText(i + "NCR");
-                    for (int m = 0; m < in.getText().length() - 3; m++) {
+            String primerNum=in.getText().toString();
+            boolean esta=false;
+
+            int posicion=BuscarNCR(primerNum.toCharArray());
+
+                    for (int m = 0; m < posicion; m++) {
                         entrada1.add(m, in.getText().charAt(m));
                     }
 
@@ -926,9 +960,11 @@ public class MainActivity extends AppCompatActivity {
         }
         else {
                     String segundoNum=in.getText().toString();
-                    int posicion=BuscarNCR(segundoNum.toCharArray());
+                    boolean esta=false;
+
+                    int posicion1=BuscarNCR(segundoNum.toCharArray());
                     System.out.println("#################################-------SEGUNDO-------"+segundoNum);
-                    for (int j = segundoNum.length(); j > posicion; j--) {
+                    for (int j = segundoNum.length(); j > posicion1; j--) {
                         entrada2.add(j,in.getText().charAt(j));
                     }
 
@@ -966,6 +1002,102 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
+            private int NCR(){
+                ArrayList entrada1=new ArrayList();
+                ArrayList entrada2=new ArrayList();
+                if (in.getText().equals("Invalid Expression")) {
+                    in.setText("");
+                } else if (out.getText().toString().equals("") || out.getText().toString().equals("-")) {
+                    System.out.println("################################-------HOLA OTRA VEZ "+expression+"---------"+ entrada1.toString());
+                    out.setText("");
+                } else {
+                    //out.setText(i + "NCR");
+                    System.out.println("################################-------ADIOS " + expression);
+                    String primerNum=expression;
+                    System.out.println("################################-------PRIMER NUMERO " + primerNum);
+                    int posicion= BuscarNCR(primerNum.toCharArray());
+                    System.out.println("################################-------POSICION " + posicion);
+                    for (int m = 0; m <= (posicion-3); m++) {
+                        entrada1.add(m, primerNum.charAt(m));
+                        System.out.println("################################-------BUCLE " + entrada1.toString());
+                    }
+
+                    System.out.println("################################-------PRIMERO " + entrada1.toString());
+                    System.out.println("################################-------PRIMERO " + entrada1.size());
+                   // System.out.println("################################-------PRIMERO " + entrada1.get(0).toString());
+                    String result = "";
+                    for (int q = 0; q < entrada1.size(); q++) {
+                        result += entrada1.get(q).toString();
+                    }
+                    System.out.println("#################################-------PRIMERO " + result.toString());
+                    Integer entero1 = Integer.parseInt(result);
+                    //String numero1=new String(entrada1);
+                    //String numero1=entrada1.toString();
+                    String numero1 = entero1.toString();
+                    System.out.println("#################################--------Cadena1: " + numero1.toString());
+                    /*int l=0;
+                    while(l<entrada1.length&&entrada1[i]<999999999&&entrada1[i]>0){
+                        numero1+=entrada1[i];
+                        l++;
+                    }
+                    */
+                    Integer n1 = (Integer) Integer.parseInt(numero1);
+
+                    String segundoNum=expression;
+                    System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$-------SEGUNDO "+expression);
+                    System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$-------SEGUNDO NUM LENGTH "+segundoNum.length());
+                    System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$-------SEGUNDO POSICION "+posicion);
+                    int j = segundoNum.length()-1;
+                    System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$-------SEGUNDO VALOR J "+j);
+                    while(j >= posicion+1){
+                        int n=0;
+                        entrada2.add(n,expression.charAt(j));
+                        System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$-------SEGUNDO BUCLE "+entrada2.toString());
+                        j--;
+                        n++;
+                    }
+                    /*
+                    System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$-------SEGUNDO NUME+ TOSTRING "+entrada2.toString());
+                    Integer entero2=Integer.parseInt(entrada2.toString());
+                    System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$-------Cadena2: "+entero2);
+                    */
+                    String result3 = "";
+                    System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$-------SEGUNDO ENTRADA2 SIZE " + entrada2.size());
+                    System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$-------SEGUNDO ENTRADA2 POSICION 0 " + entrada2.get(0));
+                    for (int q = 0; q < entrada2.size(); q++) {
+                        result3 += entrada2.get(q).toString();
+                        System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$-------SEGUNDO BUCLE 2 " + result3);
+                    }
+                    System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$-------SEGUNDO NUME TOSTRING " + result3);
+                    Integer entero2 = Integer.parseInt(result3);
+                    Integer n2 = entero2;
+                    System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$-------ENTERO 1: " + n1);
+                    System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$-------ENTERO 2: " + n2);
+                    if(n1<n2||n1<0||n2<0){
+                        return 0;
+                       // out.setText("MathError");
+                    }
+                    else{
+                        int p=UtilesMatemáticas.ncr(n1,n2);
+                        System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$-------NCR RESULTADO: " + p);
+                        return p;
+                        //out.setText(p);
+                    }
+                           /* out.setText((""));
+                            Integer n = (Integer) Integer.parseInt(in.getText().toString());
+                            if (n instanceof Integer) {
+                                if (n < 0) {
+                                    out.setText("Math Error");
+                                    return;
+                                } else {
+                                    out.setText(UtilesMatemáticas.ncr(i, n));
+                                }
+                            }*/
+
+
+                }
+                return 0;
+            }
 
     private boolean permiteSimbolo(String s, String sim){
         char[] arr = s.toCharArray();
@@ -985,20 +1117,14 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    private int BuscarNCR (char[] cad){
+    private int  BuscarNCR (char[] cad){
         int i=0;
-        while(i<cad.length){
+        boolean esta=false;
+        while(i<cad.length&&esta==false){
             if(cad[i]=='N'){
-                if(cad[i+1]=='C') {
-                    if (cad[i + 2] == 'R') {
-                        return (i + 2);
-                    }else{
-                        i++;
-                    }
-
-                }else{
-                    i++;
-                }
+                        esta=true;
+                        this.estaNCR=true;
+                        return i+2;
                 }else{
                 i++;
             }
